@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>John Doe - Creative Technologist</title>
+<meta name="description" content="Inventing tomorrow's web, one line of code at a time." />
+<meta name="keywords" content="developer, portfolio, full-stack, creative technologist" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<main>
+
+  <!-- ============ NAVIGATION ============ -->
+  <nav class="nav" id="nav">
+    <div class="container nav-inner">
+      <div class="nav-row">
+        <div class="nav-logo liquid-gradient font-sora hover-scale">Haitham Boghdady</div>
+
+        <div class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#skills">Skills</a>
+          <a href="#blog">Blog</a>
+          <a href="#contact">Contact</a>
+          <button class="btn btn-icon btn-ghost" id="theme-toggle" aria-label="Toggle theme"></button>
+        </div>
+
+        <div class="nav-mobile-toggle">
+          <button class="btn btn-icon btn-ghost" id="mobile-menu-btn" aria-label="Toggle menu"></button>
+        </div>
+      </div>
+
+      <div class="nav-mobile-menu glass-morphism" id="mobile-menu">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#blog">Blog</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============ HERO ============ -->
+  <section id="home">
+    <div id="hero-canvas-wrap"></div>
+
+    <div class="webgl-warning glass-morphism webgl-warning-inner" id="webgl-warning" style="display:none;">
+      <div class="webgl-warning-content">
+        <span data-lucide="alert-circle"></span>
+        <span>3D features unavailable - displaying in 2D mode</span>
+      </div>
+    </div>
+
+    <div class="container hero-content">
+      <div class="hero-inner" data-animate="fade" data-duration="1000">
+        <div class="avatar-wrap" data-animate="scale" data-delay="500" data-duration="800">
+          <div class="avatar-ring-outer"></div>
+          <div class="avatar-ring-inner"></div>
+          <div class="avatar-core">
+            <div class="avatar-inner">👨‍💻</div>
+          </div>
+          <div class="avatar-glow"></div>
+        </div>
+
+        <h1 class="hero-name liquid-gradient font-sora" data-animate="fade" data-delay="800" data-duration="1000">Haitham Boghdady</h1>
+
+        <p class="hero-sub" data-animate="fade-up-sm" data-delay="1000" data-duration="800">
+          Main character energy, limitless execution.
+        </p>
+
+        <div class="hero-cta" data-animate="fade-up-sm" data-delay="1200" data-duration="800">
+          <button class="btn btn-lg btn-outline-cyan glass-morphism hover-glow">
+            <span data-lucide="rocket"></span>Dive Into My Universe
+          </button>
+          <button class="btn btn-lg btn-outline-purple glass-morphism hover-glow">
+            <span data-lucide="download"></span>Download Resume
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="scroll-indicator" data-animate="fade" data-delay="2000" data-duration="1000">
+      <div class="scroll-indicator-outer">
+        <div class="scroll-indicator-dot"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ABOUT ============ -->
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">About Me</h2>
+        <p class="section-desc">
+          I'm a creative technologist who bridges the gap between design and development, crafting digital experiences
+          that push the boundaries of what's possible on the web.
+        </p>
+      </div>
+
+      <div style="margin-bottom:4rem;" data-animate="fade" data-delay="300" data-duration="800">
+        <div class="timeline" id="timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-items" id="timeline-items"></div>
+        </div>
+      </div>
+
+      <div class="about-grid">
+        <div data-animate="fade-left" data-delay="500" data-duration="800">
+          <!-- Live GitHub Widget -->
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);" id="github-widget-card">
+            <div class="card-header">
+              <div class="card-title"><span class="icon-github text-green"></span>Currently Building</div>
+            </div>
+            <div class="card-body">
+              <div class="widget-stats">
+                <div class="widget-stat hover-scale">
+                  <div class="widget-stat-num text-green" id="gh-commits">1247</div>
+                  <div class="widget-stat-label">Total Commits</div>
+                </div>
+                <div class="widget-stat hover-scale">
+                  <div class="widget-stat-num" style="color:#facc15;" id="gh-stars">89</div>
+                  <div class="widget-stat-label">Stars Earned</div>
+                </div>
+              </div>
+              <div class="widget-row">
+                <div class="widget-row-left"><span data-lucide="git-commit" class="text-cyan"></span>Last commit:</div>
+                <span class="badge" style="background:rgba(74,222,128,0.2); color:#4ade80;" id="gh-last-commit">2 hours ago</span>
+              </div>
+              <div class="widget-activity">
+                Recent Activity:
+                <div class="widget-activity-item">🚀 Updated portfolio design system</div>
+                <div class="widget-activity-item">✨ Added 3D animations to hero section</div>
+                <div class="widget-activity-item">🔧 Optimized build performance</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate="fade-right" data-delay="700" data-duration="800">
+          <!-- Currently Learning Widget -->
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header">
+              <div class="card-title"><span data-lucide="book-open" class="text-purple"></span>Currently Learning</div>
+            </div>
+            <div class="card-body" id="learning-list"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROJECTS ============ -->
+  <section id="projects" class="section" style="min-height:100vh;">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">Project Galaxy</h2>
+        <p class="section-desc">
+          Explore my projects as planets in a 3D universe. Click on any planet to dive deeper into the project details.
+        </p>
+        <div class="project-filters" id="project-filters"></div>
+      </div>
+
+      <div id="projects-canvas-wrap">
+        <div id="projects-canvas-target" style="width:100%;height:100%;"></div>
+        <div class="modal-overlay absolute-modal" id="project-modal">
+          <div class="modal-box wide glass-morphism" id="project-modal-box"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section id="skills" class="section">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">Skills Matrix</h2>
+        <p class="section-desc">
+          Interactive 3D visualization of my technical expertise. Hover over each skill to see it in action.
+        </p>
+      </div>
+
+      <div id="skills-canvas-wrap">
+        <div id="skills-canvas-target" style="width:100%;height:100%;"></div>
+        <div class="skill-detail-panel glass-morphism" id="skill-detail-panel"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ BLOG ============ -->
+  <section id="blog" class="section">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">Blog &amp; Open Source</h2>
+        <p class="section-desc">Sharing knowledge through articles and contributing to the open source community.</p>
+      </div>
+
+      <div class="blog-grid">
+        <div>
+          <h3 class="blog-heading">📝 Latest Articles</h3>
+          <div class="blog-posts" id="blog-posts"></div>
+        </div>
+
+        <div>
+          <h3 class="blog-heading">🔓 Open Source Contributions</h3>
+          <div class="oss-list" id="oss-list"></div>
+
+          <div data-animate="fade-up" data-delay="500" data-duration="800">
+            <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+              <div class="card-header">
+                <div class="card-title">📊 Contribution Activity</div>
+              </div>
+              <div class="card-body">
+                <div class="heatmap-grid" id="heatmap"></div>
+                <p class="heatmap-caption">1,247 contributions in the last year</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">Let's Connect</h2>
+        <p class="section-desc">Ready to bring your ideas to life? Let's discuss how we can create something amazing together.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div data-animate="fade-left" data-delay="200" data-duration="800">
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header">
+              <div class="card-title">💬 Send a Message</div>
+            </div>
+            <div class="card-body">
+              <form class="contact-form" id="contact-form">
+                <input class="input" type="text" placeholder="Your Name" id="cf-name" required />
+                <input class="input" type="email" placeholder="Your Email" id="cf-email" required />
+                <div class="field-wrap">
+                  <textarea class="textarea" placeholder="Your Message" id="cf-message" required></textarea>
+                  <button type="button" class="btn btn-icon btn-ghost mic-btn" id="mic-toggle"></button>
+                </div>
+                <button type="submit" class="btn btn-lg btn-cyan-solid glass-morphism hover-glow" style="width:100%;">
+                  <span data-lucide="send"></span>Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate="fade-right" data-delay="400" data-duration="800" style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header"><div class="card-title">📞 Get in Touch</div></div>
+            <div class="card-body contact-info-list">
+              <div class="contact-info-row"><span data-lucide="mail" class="text-cyan"></span>john.doe@example.com</div>
+              <div class="contact-info-row"><span data-lucide="phone" class="text-green"></span>+1 (555) 123-4567</div>
+              <div class="contact-info-row"><span data-lucide="map-pin" class="text-purple"></span>San Francisco, CA</div>
+            </div>
+          </div>
+
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header"><div class="card-title">🤖 AI Assistant</div></div>
+            <div class="card-body">
+              <div class="ai-msg">
+                <div class="ai-avatar">AI</div>
+                <div class="ai-bubble">
+                  Hi! I'm John's AI assistant. I can help answer questions about his experience, schedule meetings, or provide project details. What would you like to know?
+                </div>
+              </div>
+              <div class="ai-suggestions">
+                <span class="badge">Tell me about John's experience</span>
+                <span class="badge">What technologies does he use?</span>
+                <span class="badge">Schedule a meeting</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header"><div class="card-title">🌐 Connect Online</div></div>
+            <div class="card-body">
+              <div class="social-grid" id="social-links"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer" data-animate="fade-up" data-delay="600" data-duration="800">
+        <div class="footer-row">
+          <div class="footer-copy">© 2025 John Doe. Crafted with ❤️ and cutting-edge tech.</div>
+          <div class="footer-meta">
+            <div class="footer-bar animate-pulse"></div>
+            <span class="footer-power">Powered by vanilla JS &amp; Three.js</span>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </section>
+
+</main>
+
+<div id="toast-container"></div>
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script type="module" src="js/main.js"></script>
+<script type="module" src="js/particles.js"></script>
+<script type="module" src="js/skills.js"></script>
+<script type="module" src="js/galaxy.js"></script>
+<script type="module" src="js/timeline.js"></script>
+<script type="module" src="js/widgets.js"></script>
+<script type="module" src="js/blog.js"></script>
+<script type="module" src="js/contact.js"></script>
+</body>
+</html>
