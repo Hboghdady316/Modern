@@ -3,13 +3,19 @@
 const timelineData = [
   {
     id: 1,
-    year: "2024",
-    title: "Senior Full-Stack Developer",
-    company: "TechCorp Inc.",
-    location: "San Francisco, CA",
-    description: "Leading development of next-generation web applications using cutting-edge technologies.",
-    technologies: ["React", "Node.js", "TypeScript", "AWS"],
-    achievements: ["Increased performance by 40%", "Led team of 8 developers", "Architected microservices"],
+    year: "Dec 2024 – Present",
+    title: "Graphic Designer",
+    company: "Aman Holding",
+    location: "",
+    description:
+      "Leading design operations and AI-driven creative strategy for Egypt's leading fintech ecosystem.",
+    technologies: ["Freepik AI Suite", "HiggsField", "Adobe Firefly", "Art Direction"],
+    achievements: [
+      "Operational Excellence: Orchestrate the end-to-end production of 250+ monthly design assets for Egypt's leading fintech ecosystem, ensuring 100% brand consistency across digital and physical touchpoints.",
+      "AI Workflow Innovation: Pioneered the integration of the Freepik AI Suite, HiggsField and Adobe Firefly, resulting in a 40% reduction in conceptualization time for complex marketing campaigns.",
+      "Strategic Art Direction: Partner with C-suite and Marketing leads to translate complex financial products into accessible, high-converting visual narratives for a diverse user base.",
+      "Cross-Channel Synergy: Lead the design for integrated 360° campaigns, bridging the gap between social media content and large-scale OOH (Out-of-Home) retail branding.",
+    ],
   },
   {
     id: 2,
