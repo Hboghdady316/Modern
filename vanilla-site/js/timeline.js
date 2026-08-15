@@ -13,23 +13,46 @@ const timelineData = [
   },
   {
     id: 2,
-    year: "2022",
-    title: "Creative Technologist",
-    company: "Digital Agency",
-    location: "New York, NY",
-    description: "Bridged design and development to create immersive digital experiences.",
-    technologies: ["Three.js", "WebGL", "React", "Python"],
-    achievements: ["Won 3 design awards", "Created viral AR campaign", "Mentored junior developers"],
+    year: "Aug 2020 – Nov 2025",
+    title: "Graphic Designer",
+    company: "Freelance",
+    location: "MENA Region & Europe",
+    description:
+      "Delivered full-scale visual identity systems and AI-augmented creative work for a high-volume, international client portfolio.",
+    technologies: ["MidJourney", "Flux AI", "Visual Identity", "Brand Guidelines"],
+    achievements: [
+      "Global Brand Expansion: Managed a diverse portfolio of 1,000+ projects for international clients, specializing in full-scale Visual Identity Systems and bespoke brand guidelines.",
+      "Advanced Visual Synthesis: Utilized MidJourney and Flux AI to deliver hyper-realistic photo manipulations and conceptual art that bypassed traditional photography costs, increasing client retention by 35%.",
+      "Business Operations: Managed the full creative lifecycle including contract negotiation, project scoping, and strategic delivery for clients across the MENA region and Europe.",
+    ],
   },
   {
     id: 3,
-    year: "2020",
-    title: "Frontend Developer",
-    company: "StartupXYZ",
-    location: "Austin, TX",
-    description: "Built responsive web applications and mobile-first experiences.",
-    technologies: ["Vue.js", "JavaScript", "CSS3", "Firebase"],
-    achievements: ["Launched 5 products", "Improved UX metrics by 60%", "Built design system"],
+    year: "Aug 2019 – Dec 2019",
+    title: "Graphic Designer",
+    company: "Gorgov Advertising Agency",
+    location: "",
+    description:
+      "Produced high-volume creative assets at agency pace for top-tier Real Estate and FMCG accounts.",
+    technologies: ["Real Estate", "FMCG", "Social Media", "Agency Design"],
+    achievements: [
+      'Agency Throughput: Developed over 500 creative assets for 10+ high-tier accounts in Real Estate and FMCG, mastering the "Agency Pace" without compromising quality.',
+      "Social Evolution: Led the aesthetic modernization of social media presences for legacy clients, resulting in a measurable 20% uptick in organic engagement.",
+    ],
+  },
+  {
+    id: 4,
+    year: "Jan 2019 – May 2019",
+    title: "Junior Graphic Designer",
+    company: "AOne International",
+    location: "",
+    description:
+      "Handled print production and product photography for corporate publications and international catalogs.",
+    technologies: ["Print Design", "Photography", "Catalog Production"],
+    achievements: [
+      "Print & Publication: Managed the layout and production of monthly corporate magazines and large-scale promotional catalogs.",
+      "Product Visualization: Conducted on-site photography and high-end post-processing to ensure catalog assets met international export standards.",
+    ],
   },
 ];
 
@@ -87,10 +110,14 @@ function render() {
                 <span data-lucide="briefcase" class="text-purple"></span>
                 <span class="timeline-company">${item.company}</span>
               </div>
-              <div class="timeline-row">
+              ${
+                item.location
+                  ? `<div class="timeline-row">
                 <span data-lucide="map-pin" class="text-green"></span>
                 <span class="timeline-location">${item.location}</span>
-              </div>
+              </div>`
+                  : ""
+              }
               <p class="timeline-desc">${item.description}</p>
               <div class="timeline-tags">${item.technologies.map((t) => badge(t)).join("")}</div>
             </div>
