@@ -3,7 +3,7 @@ import { showToast } from "./main.js";
 
 const socials = [
   { name: "GitHub", icon: "🐙", cls: "gh" },
-  { name: "LinkedIn", icon: "💼", cls: "li" },
+  { name: "LinkedIn", icon: "💼", cls: "li", url: "https://www.linkedin.com/in/hboghdady316" },
   { name: "Twitter", icon: "🐦", cls: "tw" },
   { name: "Discord", icon: "🎮", cls: "dc" },
 ];
@@ -13,10 +13,16 @@ function renderSocials() {
   if (!wrap) return;
   socials.forEach((s) => {
     const a = document.createElement("a");
-    a.href = "#";
     a.className = `social-link ${s.cls}`;
     a.innerHTML = `<span style="font-size:1.1rem;">${s.icon}</span><span>${s.name}</span>`;
-    a.addEventListener("click", (e) => e.preventDefault());
+    if (s.url) {
+      a.href = s.url;
+      a.target = "_blank";
+      a.rel = "noopener noreferrer";
+    } else {
+      a.href = "#";
+      a.addEventListener("click", (e) => e.preventDefault());
+    }
     wrap.appendChild(a);
   });
 }
