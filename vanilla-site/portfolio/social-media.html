@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Social Media Designs | Haitham Boghdady</title>
+  <meta name="description" content="Explore Haitham Boghdady’s social media design portfolio: Facebook posts, Instagram visuals, stories, and campaign creatives." />
+  <meta name="author" content="Haitham Boghdady" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../css/style.css" />
+  <link rel="stylesheet" href="../css/portfolio.css" />
+  <script type="importmap">{"imports":{"three":"https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js"}}</script>
+  <script type="module" src="../js/particles.js"></script>
+  <script type="module" src="../js/portfolio.js"></script>
+</head>
+<body class="portfolio-page">
+  <div id="hero-canvas-wrap" aria-hidden="true"></div>
+  <a class="skip-link" href="#collection">Skip to projects</a>
+  <header class="masthead wrap">
+    <a class="wordmark liquid-gradient font-sora" href="../index.html">Haitham Boghdady</a>
+    <nav class="portfolio-nav" aria-label="Main navigation"><a href="../index.html#about">About</a><a href="../index.html#projects">Project Galaxy</a><a href="../index.html#contact">Contact</a></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="wrap">
+        <nav class="breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span>/</span><a href="../index.html#projects">Project Galaxy</a><span>/</span><span aria-current="page">Social Media</span></nav>
+        <p class="eyebrow">THE DESIGN COLLECTION / 01</p>
+        <h1 class="liquid-gradient font-sora">Social Media Designs</h1>
+        <p class="creator-line">Haitham Boghdady <span>·</span> Senior Graphic Designer <span>·</span> Cairo, Egypt</p>
+        <p class="intro-copy">Visual stories made for the feed. A collection of social posts, campaign creatives, and stories that bring a brand’s personality to life.</p>
+        <div class="intro-bottom"><span>FACEBOOK · INSTAGRAM · CAMPAIGNS</span><a href="#collection">Explore the collection ↓</a></div>
+      </div>
+    </section>
+    <section class="wrap collection" id="collection" aria-labelledby="collection-title">
+      <div class="collection-heading"><h2 id="collection-title">Inside the collection</h2><span id="project-count" aria-live="polite"></span></div>
+      <p class="preview-note">Collection preview — the entries below show the portfolio layout. Original project artwork and details will be added here.</p>
+      <div class="collection-tools">
+        <div class="filters" role="group" aria-label="Filter projects by platform">
+          <button type="button" data-filter="all" aria-pressed="true">All work</button>
+          <button type="button" data-filter="Facebook" aria-pressed="false">Facebook</button>
+          <button type="button" data-filter="Instagram" aria-pressed="false">Instagram</button>
+          <button type="button" data-filter="Campaigns" aria-pressed="false">Campaigns</button>
+        </div>
+        <label class="search-label">Search projects <input id="project-search" type="search" placeholder="Search the collection…" /></label>
+      </div>
+      <div id="project-list"></div>
+      <p id="empty-state" hidden>No matching projects. Try another search or select All work.</p>
+      <noscript><p>Enable JavaScript to browse the collection previews. Original artwork is still to come.</p></noscript>
+    </section>
+    <section class="closing wrap" aria-labelledby="contact-title">
+      <div class="contact-panel glass-morphism">
+        <div><p class="eyebrow">LET’S CONNECT</p><h2 id="contact-title" class="liquid-gradient font-sora">Bring your next idea to life.</h2><p>Connect with Haitham Boghdady about your next design project.</p></div>
+        <div class="contact-links"><a href="mailto:h.boghdady316@gmail.com">h.boghdady316@gmail.com ↗</a><a href="tel:+201095091603">(+20) 1095091603</a><a href="https://www.linkedin.com/in/hboghdady316" target="_blank" rel="noopener noreferrer">LinkedIn ↗<span class="sr-only"> (opens in a new tab)</span></a></div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap footer"><span>© 2026 Haitham Boghdady · Design portfolio</span><a href="../index.html#projects">Return to Project Galaxy ↑</a></footer>
+  <dialog id="artwork-dialog" aria-labelledby="artwork-title">
+    <div class="viewer-head"><span class="eyebrow">COLLECTION PREVIEW</span><button type="button" id="close-artwork" aria-label="Close artwork">✕</button></div>
+    <img id="artwork-image" alt="" />
+    <div class="viewer-copy"><h2 id="artwork-title"></h2><p id="artwork-description"></p><p id="artwork-status"></p></div>
+  </dialog>
+</body>
+</html>

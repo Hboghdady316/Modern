@@ -1,3 +1,17 @@
+## Run Haitham’s current portfolio
+
+Work on the `dev` branch. From your IDE’s terminal, in the repository root:
+
+```sh
+npm run dev:portfolio
+```
+
+Requires Python 3. Open http://127.0.0.1:8080/index.html for Haitham’s portfolio, then select the Social Media Designs planet. The category page is at http://127.0.0.1:8080/portfolio/social-media.html. Stop the server with Ctrl+C.
+
+This serves `vanilla-site`, the implementation used by GitHub Pages. `npm run dev` starts the separate Next.js template. See [portfolio editing instructions](vanilla-site/portfolio/README.md) to add real artwork.
+
+---
+
 # 🌌 Next-Gen Developer Portfolio 
 
 🔥 **A futuristic, award-winning, and fully responsive developer portfolio** built with **Next.js 14**, **Tailwind CSS**, and **Three.js**. This is not just a portfolio, it’s an **immersive 3D experience** to showcase your projects, skills, and personality like never before.

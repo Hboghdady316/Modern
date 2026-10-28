@@ -3,19 +3,12 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
 
-const projectsData = [
-  { id: 1, name: "AI Chat Platform", category: "ai", position: [2, 1, 0], color: "#00ffff", description: "Real-time AI-powered chat application with natural language processing.", technologies: ["React", "Node.js", "OpenAI", "WebSocket"], github: "https://github.com", demo: "https://demo.com", image: "assets/placeholder.svg" },
-  { id: 2, name: "E-commerce Platform", category: "frontend", position: [-2, -1, 1], color: "#ff00ff", description: "Modern e-commerce platform with advanced filtering and payment integration.", technologies: ["Next.js", "Stripe", "Prisma", "PostgreSQL"], github: "https://github.com", demo: "https://demo.com", image: "assets/placeholder.svg" },
-  { id: 3, name: "API Gateway", category: "backend", position: [0, 2, -2], color: "#ffff00", description: "Scalable API gateway with rate limiting, authentication, and monitoring.", technologies: ["Node.js", "Redis", "Docker", "AWS"], github: "https://github.com", demo: "https://demo.com", image: "assets/placeholder.svg" },
-  { id: 4, name: "Open Source UI Library", category: "opensource", position: [-1, 0, 2], color: "#00ff00", description: "Comprehensive React component library with TypeScript support.", technologies: ["React", "TypeScript", "Storybook", "Rollup"], github: "https://github.com", demo: "https://demo.com", image: "assets/placeholder.svg" },
-];
+import { socialMediaCategory } from "./portfolio-data.js";
 
+const projectsData = [socialMediaCategory];
 const filters = [
-  { id: "all", label: "All Projects", icon: "🌌" },
-  { id: "frontend", label: "Frontend", icon: "🎨" },
-  { id: "backend", label: "Backend", icon: "⚙️" },
-  { id: "ai", label: "AI/ML", icon: "🤖" },
-  { id: "opensource", label: "Open Source", icon: "🔓" },
+  { id: "all", label: "All Categories", icon: "🌌" },
+  { id: "social-media", label: "Social Media Designs", icon: "🎨" },
 ];
 
 let selectedFilter = "all";
@@ -50,31 +43,33 @@ function openModal(project) {
   const overlay = document.getElementById("project-modal");
   const box = document.getElementById("project-modal-box");
   box.innerHTML = `
+    <div class="modal-head"><span class="text-cyan">DESIGN CATEGORY</span><button class="modal-close" type="button" aria-label="Close category details">✕</button></div>
     <div class="modal-grid">
       <div><img class="modal-img" src="${project.image}" alt="${project.name}" /></div>
       <div>
-        <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:1rem;">${project.name}</h3>
+        <h3 id="category-title" style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:1rem;">${project.name}</h3>
         <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">${project.description}</p>
-        <div class="modal-tech">${project.technologies.map((t) => `<span>${t}</span>`).join("")}</div>
+        <div class="modal-tech">${project.formats.map((t) => `<span>${t}</span>`).join("")}</div>
         <div class="modal-actions">
-          <a class="btn btn-md btn-outline-cyan glass-morphism" href="${project.github}" target="_blank" rel="noopener noreferrer">
-            <span class="icon-github"></span>GitHub
-          </a>
-          <a class="btn btn-md btn-outline-purple glass-morphism" href="${project.demo}" target="_blank" rel="noopener noreferrer">
-            <span data-lucide="external-link"></span>Live Demo
+          <a class="btn btn-md btn-outline-purple glass-morphism" href="${project.url}" target="_blank" rel="noopener noreferrer">
+            <span data-lucide="external-link"></span>View Projects <span class="sr-only">(opens in a new tab)</span>
           </a>
         </div>
       </div>
     </div>
   `;
   window.__renderIcons?.();
-  overlay.classList.add("open");
+  box.querySelector(".modal-close").addEventListener("click", () => overlay.close());
+  overlay.showModal();
 }
 
 function initModalClose() {
   const overlay = document.getElementById("project-modal");
   overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) overlay.classList.remove("open");
+    if (e.target === overlay) {
+      const rect = overlay.getBoundingClientRect();
+      if (e.clientX < rect.left || e.clientX > rect.right || e.clientY < rect.top || e.clientY > rect.bottom) overlay.close();
+    }
   });
 }
 
@@ -83,13 +78,14 @@ function renderFallbackGrid(container, projects, onClick) {
   const grid = document.createElement("div");
   grid.className = "fallback-grid";
   projects.forEach((project) => {
-    const card = document.createElement("div");
+    const card = document.createElement("button");
+    card.type = "button";
     card.className = "card glass-morphism hover-scale";
     card.style.cssText = "border:1px solid rgba(255,255,255,0.2);cursor:pointer;";
     card.innerHTML = `
       <div class="card-body">
         <div class="fallback-icon" style="background:${project.color}20;">🚀</div>
-        <h3 style="color:#fff;font-weight:700;margin-bottom:0.5rem;">${project.name}</h3>
+        <h3 id="category-title" style="color:#fff;font-weight:700;margin-bottom:0.5rem;">${project.name}</h3>
         <p style="color:rgba(255,255,255,0.7);font-size:0.9rem;">${project.description}</p>
       </div>
     `;
@@ -141,6 +137,11 @@ function initScene(container) {
   scene.add(planetGroup);
 
   function buildPlanets(filter) {
+    planetGroup.traverse((object) => {
+      object.geometry?.dispose();
+      object.material?.dispose();
+      if (object.isCSS2DObject) object.element.remove();
+    });
     scene.remove(planetGroup);
     planetGroup = new THREE.Group();
     scene.add(planetGroup);
@@ -244,9 +245,14 @@ function init() {
 
   initFilters();
   initModalClose();
+  document.getElementById("social-category-details").addEventListener("click", () => openModal(socialMediaCategory));
 
+  function useFallback() {
+    sceneApi = { setFilter: (f) => renderFallbackGrid(container, projectsData.filter((p) => f === "all" || p.category === f), openModal) };
+    sceneApi.setFilter(selectedFilter);
+  }
   if (!webglSupported()) {
-    renderFallbackGrid(container, projectsData, openModal);
+    useFallback();
     return;
   }
 
@@ -255,13 +261,8 @@ function init() {
     const originalSetFilter = sceneApi.setFilter;
     sceneApi.setFilter = (f) => originalSetFilter(f);
   } catch (err) {
-    renderFallbackGrid(container, projectsData, openModal);
-    sceneApi = {
-      setFilter: (f) => {
-        selectedFilter = f;
-        renderFallbackGrid(container, projectsData.filter((p) => f === "all" || p.category === f), openModal);
-      },
-    };
+    useFallback();
+
   }
 }
 

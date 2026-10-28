@@ -6,7 +6,8 @@
     "build": "next build",
     "dev": "next dev",
     "lint": "next lint",
-    "start": "next start"
+    "start": "next start",
+    "dev:portfolio": "python3 -m http.server 8080 --bind 127.0.0.1 --directory vanilla-site"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

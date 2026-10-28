@@ -168,16 +168,20 @@
       <div class="section-head" data-animate="fade-up" data-duration="800">
         <h2 class="section-title liquid-gradient font-sora">Project Galaxy</h2>
         <p class="section-desc">
-          Explore my projects as planets in a 3D universe. Click on any planet to dive deeper into the project details.
+          Explore my design universe. Each planet is a creative category. Select Social Media Designs to discover the collection.
         </p>
         <div class="project-filters" id="project-filters"></div>
       </div>
 
       <div id="projects-canvas-wrap">
         <div id="projects-canvas-target" style="width:100%;height:100%;"></div>
-        <div class="modal-overlay absolute-modal" id="project-modal">
-          <div class="modal-box wide glass-morphism" id="project-modal-box"></div>
-        </div>
+        <dialog class="category-dialog" id="project-modal" aria-labelledby="category-title">
+          <div class="category-dialog-content" id="project-modal-box"></div>
+        </dialog>
+      </div>
+      <div class="category-access">
+        <button type="button" class="btn btn-md btn-outline-cyan glass-morphism" id="social-category-details">Social Media Designs · Category details</button>
+        <a href="portfolio/social-media.html" target="_blank" rel="noopener noreferrer">View Social Media Projects ↗<span class="sr-only"> (opens in a new tab)</span></a>
       </div>
     </div>
   </section>
@@ -279,11 +283,11 @@
               <div class="ai-msg">
                 <div class="ai-avatar">AI</div>
                 <div class="ai-bubble">
-                  Hi! I'm John's AI assistant. I can help answer questions about his experience, schedule meetings, or provide project details. What would you like to know?
+                  Hi! I'm Haitham's AI assistant. I can help answer questions about his experience, schedule meetings, or provide project details. What would you like to know?
                 </div>
               </div>
               <div class="ai-suggestions">
-                <span class="badge">Tell me about John's experience</span>
+                <span class="badge">Tell me about Haitham's experience</span>
                 <span class="badge">What technologies does he use?</span>
                 <span class="badge">Schedule a meeting</span>
               </div>
@@ -301,7 +305,7 @@
 
       <footer class="site-footer" data-animate="fade-up" data-delay="600" data-duration="800">
         <div class="footer-row">
-          <div class="footer-copy">© 2025 John Doe. Crafted with ❤️ and cutting-edge tech.</div>
+          <div class="footer-copy">© 2026 Haitham Boghdady. Crafted with ❤️ and cutting-edge tech.</div>
           <div class="footer-meta">
             <div class="footer-bar animate-pulse"></div>
             <span class="footer-power">Powered by vanilla JS &amp; Three.js</span>

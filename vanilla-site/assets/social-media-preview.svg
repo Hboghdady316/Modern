@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900">
+<rect width="1200" height="900" fill="#ded4ee"/>
+<circle cx="1070" cy="100" r="330" fill="#c4afd9"/>
+<circle cx="160" cy="850" r="360" fill="#ccbcdd"/>
+<g transform="translate(300 105) rotate(-8 300 345)">
+<rect width="600" height="690" rx="8" fill="#261934"/>
+<path d="M50 400L550 200M50 470L550 270M50 540L550 340" stroke="#c7ff83" stroke-width="25"/>
+<text x="48" y="80" fill="#eee8f3" font-family="Arial,sans-serif" font-size="20" letter-spacing="5">SOCIAL / CREATIVE</text>
+<text x="48" y="195" fill="#fff" font-family="Arial,sans-serif" font-size="78" font-weight="bold">Made for</text>
+<text x="48" y="285" fill="#fff" font-family="Arial,sans-serif" font-size="78" font-weight="bold">the feed.</text>
+<rect x="35" y="575" width="530" height="65" rx="3" fill="#261934"/>
+<text x="50" y="616" fill="#eee8f3" font-family="Arial,sans-serif" font-size="22" letter-spacing="3">LAYOUT PREVIEW · ARTWORK TO COME</text>
+</g></svg>
