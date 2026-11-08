@@ -1,0 +1,596 @@
+{
+  "schemaVersion": 1,
+  "profile": {
+    "name": "Haitham Boghdady",
+    "role": "Senior Graphic Designer",
+    "location": "Cairo, Egypt",
+    "email": "h.boghdady316@gmail.com",
+    "phone": "(+20) 1095091603",
+    "tagline": "Main character energy, limitless execution.",
+    "bio": "I'm a Senior Graphic Designer who lives at the intersection of art and AI. Over 7+ years, I've led high-volume creative teams across global markets, pairing a business mindset with artistic instinct to turn bold ideas into visuals that actually move the needle.",
+    "resumeUrl": "",
+    "socials": [
+      {
+        "name": "GitHub",
+        "icon": "🐙",
+        "url": ""
+      },
+      {
+        "name": "LinkedIn",
+        "icon": "💼",
+        "url": "https://www.linkedin.com/in/hboghdady316"
+      },
+      {
+        "name": "Twitter",
+        "icon": "🐦",
+        "url": ""
+      },
+      {
+        "name": "Discord",
+        "icon": "🎮",
+        "url": ""
+      }
+    ]
+  },
+  "settings": {
+    "defaultLayout": "ordered",
+    "galaxyTitle": "Project Galaxy",
+    "galaxyDescription": "Explore my design universe. Each planet is a creative category. Select a planet to explore the collections.",
+    "sections": {
+      "home": true,
+      "about": true,
+      "projects": true,
+      "skills": true,
+      "contact": true
+    },
+    "learningNext": "Exploring quantum computing applications in web development",
+    "showActivityWidget": true,
+    "showLearningWidget": true
+  },
+  "categories": [
+    {
+      "id": "social-media",
+      "name": "Social Mediaaa",
+      "icon": "🎨",
+      "color": "#e32400",
+      "description": "Visual stories made for the feed. Explore social media posts, campaign creatives, and story layouts designed to bring a brand’s personality to life across digital platforms.",
+      "formats": [
+        "Facebook",
+        "Instagram",
+        "Campaigns",
+        "Stories"
+      ],
+      "category": "social-media",
+      "position": [
+        -2,
+        1.25,
+        0
+      ],
+      "image": "assets/social-media-preview.svg",
+      "url": "portfolio/social-media.html",
+      "projects": [
+        {
+          "id": "social-media-preview-1",
+          "title": "Facebook post designs",
+          "platform": "Facebook",
+          "format": "Feed posts",
+          "description": "A space for branded posts, promotional announcements, and campaign visuals created for Facebook.",
+          "image": "../assets/social-media-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "social-media-preview-2",
+          "title": "Instagram feed designs",
+          "platform": "Instagram",
+          "format": "Feed & carousels",
+          "description": "A space for Instagram posts and carousel collections, with room to explain the idea behind each design.",
+          "image": "../assets/social-media-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "social-media-preview-3",
+          "title": "Stories & campaign creatives",
+          "platform": "Campaigns",
+          "format": "Stories & campaigns",
+          "description": "A space for vertical stories and coordinated social campaigns, grouped together as complete visual stories.",
+          "image": "../assets/social-media-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "d33d0ce5-9ab0-426b-ab87-55651e356ca0",
+          "title": "Untitled project",
+          "platform": "Facebook",
+          "format": "",
+          "description": "",
+          "image": "../assets/social-media-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "logos-branding",
+      "name": "Logos & Branding",
+      "icon": "✦",
+      "color": "#22d3ee",
+      "description": "Identity with a purpose. A collection space for logos, visual identities, and brand systems, from the first mark to the way a brand appears across every touchpoint.",
+      "formats": [
+        "Logos",
+        "Visual Identity",
+        "Brand Guidelines"
+      ],
+      "category": "logos-branding",
+      "position": [
+        0,
+        1.25,
+        0
+      ],
+      "image": "assets/logos-branding-preview.",
+      "url": "portfolio/logos-branding.html",
+      "projects": [
+        {
+          "id": "logos-branding-preview-1",
+          "title": "Logo design collection",
+          "platform": "Logos",
+          "format": "Logo concepts",
+          "description": "Placeholder for logo design collection. Original artwork and project details will be added here.",
+          "image": "../assets/logos-branding-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "logos-branding-preview-2",
+          "title": "Visual identity systems",
+          "platform": "Visual Identity",
+          "format": "Brand applications",
+          "description": "Placeholder for visual identity systems. Original artwork and project details will be added here.",
+          "image": "../assets/logos-branding-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "logos-branding-preview-3",
+          "title": "Brand guideline presentations",
+          "platform": "Brand Guidelines",
+          "format": "Identity guidelines",
+          "description": "Placeholder for brand guideline presentations. Original artwork and project details will be added here.",
+          "image": "../assets/logos-branding-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "outdoors",
+      "name": "Outdoors",
+      "icon": "🏙️",
+      "color": "#fbbf24",
+      "description": "Design beyond the screen. A collection space for billboards, outdoor campaigns, and large-format visuals created to stand out in the world around us.",
+      "formats": [
+        "Billboards",
+        "Signage",
+        "Outdoor Campaigns"
+      ],
+      "category": "outdoors",
+      "position": [
+        2,
+        1.25,
+        0
+      ],
+      "image": "assets/outdoors-preview.svg",
+      "url": "portfolio/outdoors.html",
+      "projects": [
+        {
+          "id": "outdoors-preview-1",
+          "title": "Billboard designs",
+          "platform": "Billboards",
+          "format": "Large-format artwork",
+          "description": "Placeholder for billboard designs. Original artwork and project details will be added here.",
+          "image": "../assets/outdoors-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "outdoors-preview-2",
+          "title": "Signage & environmental graphics",
+          "platform": "Signage",
+          "format": "Environmental design",
+          "description": "Placeholder for signage & environmental graphics. Original artwork and project details will be added here.",
+          "image": "../assets/outdoors-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "outdoors-preview-3",
+          "title": "Outdoor campaign visuals",
+          "platform": "Outdoor Campaigns",
+          "format": "Campaign concepts",
+          "description": "Placeholder for outdoor campaign visuals. Original artwork and project details will be added here.",
+          "image": "../assets/outdoors-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "printings",
+      "name": "Printings",
+      "icon": "🖨️",
+      "color": "#4ade80",
+      "description": "Ideas brought to paper. A collection space for brochures, flyers, stationery, and printed brand materials, with room to show the details of each piece.",
+      "formats": [
+        "Brochures & Flyers",
+        "Stationery",
+        "Packaging"
+      ],
+      "category": "printings",
+      "position": [
+        -2,
+        -1.25,
+        0
+      ],
+      "image": "assets/printings-preview.svg",
+      "url": "portfolio/printings.html",
+      "projects": [
+        {
+          "id": "printings-preview-1",
+          "title": "Brochures & flyer designs",
+          "platform": "Brochures & Flyers",
+          "format": "Promotional print",
+          "description": "Placeholder for brochures & flyer designs. Original artwork and project details will be added here.",
+          "image": "../assets/printings-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "printings-preview-2",
+          "title": "Business stationery",
+          "platform": "Stationery",
+          "format": "Printed brand materials",
+          "description": "Placeholder for business stationery. Original artwork and project details will be added here.",
+          "image": "../assets/printings-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "printings-preview-3",
+          "title": "Packaging designs",
+          "platform": "Packaging",
+          "format": "Packaging concepts",
+          "description": "Placeholder for packaging designs. Original artwork and project details will be added here.",
+          "image": "../assets/printings-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "magazines-catalogues",
+      "name": "Magazines & Catalogues",
+      "icon": "📖",
+      "color": "#f472b6",
+      "description": "Stories told across pages. A collection space for magazine layouts, product catalogues, and editorial design, with attention to typography, rhythm, and the reading experience.",
+      "formats": [
+        "Magazines",
+        "Catalogues",
+        "Editorial Layouts"
+      ],
+      "category": "magazines-catalogues",
+      "position": [
+        0,
+        -1.25,
+        0
+      ],
+      "image": "assets/magazines-catalogues-preview.svg",
+      "url": "portfolio/magazines-catalogues.html",
+      "projects": [
+        {
+          "id": "magazines-catalogues-preview-1",
+          "title": "Magazine design collection",
+          "platform": "Magazines",
+          "format": "Covers & spreads",
+          "description": "Placeholder for magazine design collection. Original artwork and project details will be added here.",
+          "image": "../assets/magazines-catalogues-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "magazines-catalogues-preview-2",
+          "title": "Product catalogue layouts",
+          "platform": "Catalogues",
+          "format": "Product presentations",
+          "description": "Placeholder for product catalogue layouts. Original artwork and project details will be added here.",
+          "image": "../assets/magazines-catalogues-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "magazines-catalogues-preview-3",
+          "title": "Editorial layout studies",
+          "platform": "Editorial Layouts",
+          "format": "Multi-page design",
+          "description": "Placeholder for editorial layout studies. Original artwork and project details will be added here.",
+          "image": "../assets/magazines-catalogues-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    },
+    {
+      "id": "videos",
+      "name": "Videos",
+      "icon": "🎬",
+      "color": "#fb923c",
+      "description": "Ideas in motion. A collection space for motion graphics, promotional videos, and animated social content, ready for video projects and their stories.",
+      "formats": [
+        "Motion Graphics",
+        "Promotional Videos",
+        "Social Videos"
+      ],
+      "category": "videos",
+      "position": [
+        2,
+        -1.25,
+        0
+      ],
+      "image": "assets/videos-preview.svg",
+      "url": "portfolio/videos.html",
+      "projects": [
+        {
+          "id": "videos-preview-1",
+          "title": "Motion graphics collection",
+          "platform": "Motion Graphics",
+          "format": "Animation previews",
+          "description": "Placeholder for motion graphics collection. Original artwork and project details will be added here.",
+          "image": "../assets/videos-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "videos-preview-2",
+          "title": "Promotional video projects",
+          "platform": "Promotional Videos",
+          "format": "Campaign videos",
+          "description": "Placeholder for promotional video projects. Original artwork and project details will be added here.",
+          "image": "../assets/videos-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        },
+        {
+          "id": "videos-preview-3",
+          "title": "Social video creatives",
+          "platform": "Social Videos",
+          "format": "Short-form content",
+          "description": "Placeholder for social video creatives. Original artwork and project details will be added here.",
+          "image": "../assets/videos-preview.svg",
+          "placeholder": true,
+          "visible": true,
+          "videoUrl": ""
+        }
+      ],
+      "visible": true
+    }
+  ],
+  "timeline": [
+    {
+      "id": 1,
+      "year": "Dec 2024 – Present",
+      "title": "Graphic Designer",
+      "company": "Aman Holding",
+      "location": "",
+      "description": "Leading design operations and AI-driven creative strategy for Egypt's leading fintech ecosystem.",
+      "technologies": [
+        "Freepik AI Suite",
+        "HiggsField",
+        "Adobe Firefly",
+        "Art Direction"
+      ],
+      "achievements": [
+        "Operational Excellence: Orchestrate the end-to-end production of 250+ monthly design assets for Egypt's leading fintech ecosystem, ensuring 100% brand consistency across digital and physical touchpoints.",
+        "AI Workflow Innovation: Pioneered the integration of the Freepik AI Suite, HiggsField and Adobe Firefly, resulting in a 40% reduction in conceptualization time for complex marketing campaigns.",
+        "Strategic Art Direction: Partner with C-suite and Marketing leads to translate complex financial products into accessible, high-converting visual narratives for a diverse user base.",
+        "Cross-Channel Synergy: Lead the design for integrated 360° campaigns, bridging the gap between social media content and large-scale OOH (Out-of-Home) retail branding."
+      ]
+    },
+    {
+      "id": 2,
+      "year": "Aug 2020 – Nov 2025",
+      "title": "Graphic Designer",
+      "company": "Freelance",
+      "location": "MENA Region & Europe",
+      "description": "Delivered full-scale visual identity systems and AI-augmented creative work for a high-volume, international client portfolio.",
+      "technologies": [
+        "MidJourney",
+        "Flux AI",
+        "Visual Identity",
+        "Brand Guidelines"
+      ],
+      "achievements": [
+        "Global Brand Expansion: Managed a diverse portfolio of 1,000+ projects for international clients, specializing in full-scale Visual Identity Systems and bespoke brand guidelines.",
+        "Advanced Visual Synthesis: Utilized MidJourney and Flux AI to deliver hyper-realistic photo manipulations and conceptual art that bypassed traditional photography costs, increasing client retention by 35%.",
+        "Business Operations: Managed the full creative lifecycle including contract negotiation, project scoping, and strategic delivery for clients across the MENA region and Europe."
+      ]
+    },
+    {
+      "id": 3,
+      "year": "Aug 2019 – Dec 2019",
+      "title": "Graphic Designer",
+      "company": "Gorgov Advertising Agency",
+      "location": "",
+      "description": "Produced high-volume creative assets at agency pace for top-tier Real Estate and FMCG accounts.",
+      "technologies": [
+        "Real Estate",
+        "FMCG",
+        "Social Media",
+        "Agency Design"
+      ],
+      "achievements": [
+        "Agency Throughput: Developed over 500 creative assets for 10+ high-tier accounts in Real Estate and FMCG, mastering the \"Agency Pace\" without compromising quality.",
+        "Social Evolution: Led the aesthetic modernization of social media presences for legacy clients, resulting in a measurable 20% uptick in organic engagement."
+      ]
+    },
+    {
+      "id": 4,
+      "year": "Jan 2019 – May 2019",
+      "title": "Junior Graphic Designer",
+      "company": "AOne International",
+      "location": "",
+      "description": "Handled print production and product photography for corporate publications and international catalogs.",
+      "technologies": [
+        "Print Design",
+        "Photography",
+        "Catalog Production"
+      ],
+      "achievements": [
+        "Print & Publication: Managed the layout and production of monthly corporate magazines and large-scale promotional catalogs.",
+        "Product Visualization: Conducted on-site photography and high-end post-processing to ensure catalog assets met international export standards."
+      ]
+    }
+  ],
+  "skills": [
+    {
+      "name": "React",
+      "category": "Frontend",
+      "level": 95,
+      "color": "#61DAFB",
+      "position": [
+        3,
+        0,
+        0
+      ],
+      "description": "Advanced React development with hooks, context, and performance optimization"
+    },
+    {
+      "name": "Node.js",
+      "category": "Backend",
+      "level": 90,
+      "color": "#339933",
+      "position": [
+        2.1,
+        2.1,
+        0
+      ],
+      "description": "Server-side JavaScript with Express, APIs, and microservices architecture"
+    },
+    {
+      "name": "TypeScript",
+      "category": "Frontend",
+      "level": 88,
+      "color": "#3178C6",
+      "position": [
+        0,
+        3,
+        0
+      ],
+      "description": "Type-safe JavaScript development with advanced TypeScript patterns"
+    },
+    {
+      "name": "Python",
+      "category": "AI/ML",
+      "level": 85,
+      "color": "#3776AB",
+      "position": [
+        -2.1,
+        2.1,
+        0
+      ],
+      "description": "Machine learning, data analysis, and backend development with Python"
+    },
+    {
+      "name": "AWS",
+      "category": "Cloud",
+      "level": 82,
+      "color": "#FF9900",
+      "position": [
+        -3,
+        0,
+        0
+      ],
+      "description": "Cloud infrastructure, serverless computing, and DevOps on AWS"
+    },
+    {
+      "name": "Docker",
+      "category": "DevOps",
+      "level": 80,
+      "color": "#2496ED",
+      "position": [
+        -2.1,
+        -2.1,
+        0
+      ],
+      "description": "Containerization, orchestration, and deployment automation"
+    },
+    {
+      "name": "Three.js",
+      "category": "Frontend",
+      "level": 75,
+      "color": "#000000",
+      "position": [
+        0,
+        -3,
+        0
+      ],
+      "description": "3D graphics, WebGL, and immersive web experiences"
+    },
+    {
+      "name": "GraphQL",
+      "category": "Backend",
+      "level": 78,
+      "color": "#E10098",
+      "position": [
+        2.1,
+        -2.1,
+        0
+      ],
+      "description": "API design, schema definition, and efficient data fetching"
+    }
+  ],
+  "learning": [
+    {
+      "name": "WebAssembly",
+      "progress": 75,
+      "icon": "🔧"
+    },
+    {
+      "name": "Rust",
+      "progress": 60,
+      "icon": "🦀"
+    },
+    {
+      "name": "Machine Learning",
+      "progress": 45,
+      "icon": "🤖"
+    },
+    {
+      "name": "Blockchain",
+      "progress": 30,
+      "icon": "⛓️"
+    }
+  ]
+}

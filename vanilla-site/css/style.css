@@ -541,3 +541,41 @@ body:has(.category-dialog[open]) { overflow:hidden; }
 .category-access :focus-visible, .category-dialog :focus-visible, .fallback-grid button:focus-visible { outline:3px solid #bd8cff; outline-offset:5px; }
 .fallback-grid button { text-align:left; font:inherit; }
 .sr-only { position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+/* Six design categories: planet labels and keyboard-accessible category entries. */
+#projects-canvas-target .skills-label { max-width: 150px; white-space: normal; line-height: 1.4; padding: 4px 8px; background: #030712a6; border-radius: 6px; }
+.category-access { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.category-entry { border-radius: 12px; padding: 14px; display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.category-entry button { max-width: 100%; white-space: normal; color: #e9d5ff; }
+.category-entry a { font-size: 12px; color: #67e8f9; }
+#projects-canvas-wrap.is-fallback { height: auto; min-height: 600px; }
+#projects-canvas-wrap.is-fallback #projects-canvas-target { height: auto !important; }
+@media (max-width: 700px) {
+  .category-access { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  #projects-canvas-target .skills-label { max-width: 120px; font-size: 11px; }
+  .project-filters { gap: 8px; }
+  .project-filters .btn { font-size: 12px; padding: 8px 10px; }
+}
+
+.galaxy-arrangement { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px; margin-top: 24px; }
+.galaxy-arrangement > span { color: #ffffffa6; font-size: 12px; margin-right: 4px; }
+.galaxy-arrangement .btn { color: #ffffffb3; font-size: 13px; border-radius: 8px; }
+.galaxy-arrangement [aria-pressed="true"] { color: #67e8f9; border-color: #22d3ee; background: #22d3ee20; }
+.galaxy-arrangement :focus-visible { outline: 3px solid #bd8cff; outline-offset: 4px; }
+.galaxy-arrangement [hidden] { display: none; }
+.galaxy-arrangement :disabled { opacity: .45; cursor: default; }
+.galaxy-layout-status { margin-top: 12px; color: #ffffff99; font-size: 12px; line-height: 1.6; }
+/* Section visibility is controlled by the content settings. */
+[hidden] { display: none !important; }
+/* Lightweight planets preserve the galaxy when GPU rendering is interrupted. */
+.galaxy-map-fallback { position: relative; width: 100%; height: 600px; }
+.fallback-planet { position: absolute; transform: translate(-50%, -50%); width: 150px; min-height: 110px; border: 0; background: none; color: white; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 20px; }
+.fallback-planet-orb { position: relative; width: 60px; height: 60px; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #ffffff80, transparent 55%), var(--planet-color); box-shadow: inset -12px -9px 18px #0008, 0 0 25px color-mix(in srgb, var(--planet-color), transparent 75%); }
+.fallback-planet-orb::after { content: ''; position: absolute; width: 95px; height: 21px; border: 2px solid var(--planet-color); opacity: .55; border-radius: 50%; left: -19px; top: 18px; transform: rotate(-18deg); }
+.fallback-planet-label { max-width: 140px; font-size: 12px; line-height: 1.5; padding: 3px 6px; background: #030712b3; border-radius: 5px; }
+.fallback-planet:hover .fallback-planet-orb { filter: brightness(1.35); }
+.fallback-planet:focus-visible { outline: 2px solid #67e8f9; outline-offset: 5px; border-radius: 8px; }
+@media(max-width:600px) { .fallback-planet { width: 120px; } .fallback-planet-label { max-width: 115px; font-size: 11px; } }
+#projects-canvas-wrap { height: 460px; }
+.galaxy-map-fallback { height: 100%; }
+@media(max-width:700px) { #projects-canvas-wrap { height: 560px; } }

@@ -1,20 +1,16 @@
 // Contact form + social links (port of components/sections/contact-section.tsx)
 import { showToast } from "./main.js";
 
-const socials = [
-  { name: "GitHub", icon: "🐙", cls: "gh" },
-  { name: "LinkedIn", icon: "💼", cls: "li", url: "https://www.linkedin.com/in/hboghdady316" },
-  { name: "Twitter", icon: "🐦", cls: "tw" },
-  { name: "Discord", icon: "🎮", cls: "dc" },
-];
+import { siteContent, whenReady, escapeHtml } from "./site-content.js";
+const socials = siteContent.profile.socials;
 
 function renderSocials() {
   const wrap = document.getElementById("social-links");
   if (!wrap) return;
   socials.forEach((s) => {
     const a = document.createElement("a");
-    a.className = `social-link ${s.cls}`;
-    a.innerHTML = `<span style="font-size:1.1rem;">${s.icon}</span><span>${s.name}</span>`;
+    a.className = "social-link";
+    a.innerHTML = `<span style="font-size:1.1rem;">${escapeHtml(s.icon)}</span><span>${escapeHtml(s.name)}</span>`;
     if (s.url) {
       a.href = s.url;
       a.target = "_blank";
@@ -74,7 +70,7 @@ function initSuggestionBadges() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+whenReady(() => {
   renderSocials();
   initMic();
   initForm();

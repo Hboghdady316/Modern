@@ -13,8 +13,8 @@
 <script type="importmap">
 {
   "imports": {
-    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
-    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    "three": "./assets/vendor/three/build/three.module.js",
+    "three/addons/": "./assets/vendor/three/addons/"
   }
 }
 </script>
@@ -168,9 +168,16 @@
       <div class="section-head" data-animate="fade-up" data-duration="800">
         <h2 class="section-title liquid-gradient font-sora">Project Galaxy</h2>
         <p class="section-desc">
-          Explore my design universe. Each planet is a creative category. Select Social Media Designs to discover the collection.
+          Explore my design universe. Each planet is a creative category. Select a planet to explore Social Media, Logos &amp; Branding, Outdoors, Printings, Magazines &amp; Catalogues, or Videos.
         </p>
         <div class="project-filters" id="project-filters"></div>
+        <div class="galaxy-arrangement" role="group" aria-label="Planet arrangement">
+          <span>Planet arrangement</span>
+          <button type="button" class="btn btn-md glass-morphism" data-layout="ordered" aria-pressed="true">Ordered</button>
+          <button type="button" class="btn btn-md glass-morphism" data-layout="random" aria-pressed="false">Random</button>
+          <button type="button" class="btn btn-md glass-morphism" id="shuffle-planets" hidden>Shuffle again ↻</button>
+        </div>
+        <p class="galaxy-layout-status" id="galaxy-layout-status" role="status">Planets are arranged in an ordered layout.</p>
       </div>
 
       <div id="projects-canvas-wrap">
@@ -179,9 +186,31 @@
           <div class="category-dialog-content" id="project-modal-box"></div>
         </dialog>
       </div>
-      <div class="category-access">
-        <button type="button" class="btn btn-md btn-outline-cyan glass-morphism" id="social-category-details">Social Media Designs · Category details</button>
-        <a href="portfolio/social-media.html" target="_blank" rel="noopener noreferrer">View Social Media Projects ↗<span class="sr-only"> (opens in a new tab)</span></a>
+      <div class="category-access" aria-label="Explore design categories">
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="social-media">Social Media<span class="sr-only"> category details</span></button>
+          <a href="portfolio/social-media.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Social Media (opens in a new tab)</span></a>
+        </div>
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="logos-branding">Logos &amp; Branding<span class="sr-only"> category details</span></button>
+          <a href="portfolio/logos-branding.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Logos &amp; Branding (opens in a new tab)</span></a>
+        </div>
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="outdoors">Outdoors<span class="sr-only"> category details</span></button>
+          <a href="portfolio/outdoors.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Outdoors (opens in a new tab)</span></a>
+        </div>
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="printings">Printings<span class="sr-only"> category details</span></button>
+          <a href="portfolio/printings.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Printings (opens in a new tab)</span></a>
+        </div>
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="magazines-catalogues">Magazines &amp; Catalogues<span class="sr-only"> category details</span></button>
+          <a href="portfolio/magazines-catalogues.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Magazines &amp; Catalogues (opens in a new tab)</span></a>
+        </div>
+        <div class="category-entry glass-morphism">
+          <button type="button" class="btn btn-md btn-ghost" data-category-details="videos">Videos<span class="sr-only"> category details</span></button>
+          <a href="portfolio/videos.html" target="_blank" rel="noopener noreferrer">View Projects ↗<span class="sr-only">: Videos (opens in a new tab)</span></a>
+        </div>
       </div>
     </div>
   </section>

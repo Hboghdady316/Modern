@@ -1,3 +1,4 @@
+import { whenReady } from "./site-content.js";
 // Navigation, theme toggle, mobile menu, scroll-reveal system (replaces framer-motion whileInView / animate)
 
 function renderIcons() {
@@ -96,7 +97,7 @@ function initReveal() {
   });
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+whenReady(() => {
   renderIcons();
   initReveal();
 });

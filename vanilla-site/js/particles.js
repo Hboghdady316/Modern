@@ -1,14 +1,6 @@
 // Hero 3D particle background + code constellation (port of components/3d/particle-background.tsx)
 import * as THREE from "three";
 
-function webglSupported() {
-  try {
-    const canvas = document.createElement("canvas");
-    return !!(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
-  } catch (e) {
-    return false;
-  }
-}
 
 function renderFallback(container) {
   const wrap = document.createElement("div");
@@ -33,10 +25,6 @@ function init() {
   const container = document.getElementById("hero-canvas-wrap");
   if (!container) return;
 
-  if (!webglSupported()) {
-    renderFallback(container);
-    return;
-  }
 
   let renderer;
   try {
@@ -84,11 +72,11 @@ function init() {
     }
     scene.add(constellation);
 
-    const clock = new THREE.Clock();
+    const startedAt = performance.now();
     let rafId;
     function animate() {
       rafId = requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
+      const t = (performance.now() - startedAt) / 1000;
       points.rotation.x = t * 0.05;
       points.rotation.y = t * 0.02;
       constellation.rotation.y = t * 0.01;

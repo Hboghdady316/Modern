@@ -1,3 +1,7 @@
+## Edit the website with the admin panel
+
+Run `npm run admin` from your IDE terminal, then open http://127.0.0.1:8080/admin/. It saves profile, category, project, and experience changes to the project files. See [admin instructions](admin/README.md) for uploads, backups, and publishing.
+
 ## Run Haitham’s current portfolio
 
 Work on the `dev` branch. From your IDE’s terminal, in the repository root:
@@ -6,7 +10,7 @@ Work on the `dev` branch. From your IDE’s terminal, in the repository root:
 npm run dev:portfolio
 ```
 
-Requires Python 3. Open http://127.0.0.1:8080/index.html for Haitham’s portfolio, then select the Social Media Designs planet. The category page is at http://127.0.0.1:8080/portfolio/social-media.html. Stop the server with Ctrl+C.
+Requires Node.js 20 or newer. This starts both the website and admin panel. Open http://127.0.0.1:8080/index.html for Haitham’s portfolio, then select the Social Media Designs planet. The category page is at http://127.0.0.1:8080/portfolio/social-media.html. Stop the server with Ctrl+C.
 
 This serves `vanilla-site`, the implementation used by GitHub Pages. `npm run dev` starts the separate Next.js template. See [portfolio editing instructions](vanilla-site/portfolio/README.md) to add real artwork.
 

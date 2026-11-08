@@ -28,3 +28,6 @@ next-env.d.ts
 
 # local tooling
 .claude/
+
+# Local admin recovery snapshots
+/admin/.backups/

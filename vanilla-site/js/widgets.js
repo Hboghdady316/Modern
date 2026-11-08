@@ -1,12 +1,8 @@
 // Live GitHub widget + Currently Learning widget
 // (port of components/widgets/live-github-widget.tsx + currently-learning-widget.tsx)
 
-const learningData = [
-  { name: "WebAssembly", progress: 75, icon: "🔧" },
-  { name: "Rust", progress: 60, icon: "🦀" },
-  { name: "Machine Learning", progress: 45, icon: "🤖" },
-  { name: "Blockchain", progress: 30, icon: "⛓️" },
-];
+import { siteContent, escapeHtml, whenReady } from "./site-content.js";
+const learningData = siteContent.learning.map(item => ({...item,name:escapeHtml(item.name),icon:escapeHtml(item.icon)}));
 
 function initGithubWidget() {
   const commitsEl = document.getElementById("gh-commits");
@@ -46,7 +42,7 @@ function initLearningWidget() {
   nextUp.className = "learning-next hover-scale";
   nextUp.innerHTML = `
     <div class="learning-next-head"><span data-lucide="zap" style="color:#facc15;"></span>Next Up:</div>
-    <div class="learning-next-body">Exploring quantum computing applications in web development</div>
+    <div class="learning-next-body">${escapeHtml(siteContent.settings.learningNext)}</div>
   `;
   list.appendChild(nextUp);
 
@@ -70,7 +66,7 @@ function initLearningWidget() {
   list.querySelectorAll("[data-animate]").forEach((el) => io.observe(el));
 }
 
-document.addEventListener("DOMContentLoaded", () => {
+whenReady(() => {
   initGithubWidget();
   initLearningWidget();
 });

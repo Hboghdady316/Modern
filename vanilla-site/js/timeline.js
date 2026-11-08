@@ -1,66 +1,7 @@
-// Interactive Timeline (port of components/interactive-timeline.tsx)
-
-const timelineData = [
-  {
-    id: 1,
-    year: "Dec 2024 – Present",
-    title: "Graphic Designer",
-    company: "Aman Holding",
-    location: "",
-    description:
-      "Leading design operations and AI-driven creative strategy for Egypt's leading fintech ecosystem.",
-    technologies: ["Freepik AI Suite", "HiggsField", "Adobe Firefly", "Art Direction"],
-    achievements: [
-      "Operational Excellence: Orchestrate the end-to-end production of 250+ monthly design assets for Egypt's leading fintech ecosystem, ensuring 100% brand consistency across digital and physical touchpoints.",
-      "AI Workflow Innovation: Pioneered the integration of the Freepik AI Suite, HiggsField and Adobe Firefly, resulting in a 40% reduction in conceptualization time for complex marketing campaigns.",
-      "Strategic Art Direction: Partner with C-suite and Marketing leads to translate complex financial products into accessible, high-converting visual narratives for a diverse user base.",
-      "Cross-Channel Synergy: Lead the design for integrated 360° campaigns, bridging the gap between social media content and large-scale OOH (Out-of-Home) retail branding.",
-    ],
-  },
-  {
-    id: 2,
-    year: "Aug 2020 – Nov 2025",
-    title: "Graphic Designer",
-    company: "Freelance",
-    location: "MENA Region & Europe",
-    description:
-      "Delivered full-scale visual identity systems and AI-augmented creative work for a high-volume, international client portfolio.",
-    technologies: ["MidJourney", "Flux AI", "Visual Identity", "Brand Guidelines"],
-    achievements: [
-      "Global Brand Expansion: Managed a diverse portfolio of 1,000+ projects for international clients, specializing in full-scale Visual Identity Systems and bespoke brand guidelines.",
-      "Advanced Visual Synthesis: Utilized MidJourney and Flux AI to deliver hyper-realistic photo manipulations and conceptual art that bypassed traditional photography costs, increasing client retention by 35%.",
-      "Business Operations: Managed the full creative lifecycle including contract negotiation, project scoping, and strategic delivery for clients across the MENA region and Europe.",
-    ],
-  },
-  {
-    id: 3,
-    year: "Aug 2019 – Dec 2019",
-    title: "Graphic Designer",
-    company: "Gorgov Advertising Agency",
-    location: "",
-    description:
-      "Produced high-volume creative assets at agency pace for top-tier Real Estate and FMCG accounts.",
-    technologies: ["Real Estate", "FMCG", "Social Media", "Agency Design"],
-    achievements: [
-      'Agency Throughput: Developed over 500 creative assets for 10+ high-tier accounts in Real Estate and FMCG, mastering the "Agency Pace" without compromising quality.',
-      "Social Evolution: Led the aesthetic modernization of social media presences for legacy clients, resulting in a measurable 20% uptick in organic engagement.",
-    ],
-  },
-  {
-    id: 4,
-    year: "Jan 2019 – May 2019",
-    title: "Junior Graphic Designer",
-    company: "AOne International",
-    location: "",
-    description:
-      "Handled print production and product photography for corporate publications and international catalogs.",
-    technologies: ["Print Design", "Photography", "Catalog Production"],
-    achievements: [
-      "Print & Publication: Managed the layout and production of monthly corporate magazines and large-scale promotional catalogs.",
-      "Product Visualization: Conducted on-site photography and high-end post-processing to ensure catalog assets met international export standards.",
-    ],
-  },
-];
+import { siteContent, escapeHtml, whenReady } from "./site-content.js";
+const timelineData = siteContent.timeline.map(item => ({...item,
+  year: escapeHtml(item.year), title: escapeHtml(item.title), company: escapeHtml(item.company), location: escapeHtml(item.location), description: escapeHtml(item.description), technologies: item.technologies.map(escapeHtml), achievements: item.achievements.map(escapeHtml)
+}));
 
 function badge(text) {
   return `<span class="badge">${text}</span>`;
@@ -159,4 +100,4 @@ function render() {
   wrap.querySelectorAll("[data-animate]").forEach((el) => io.observe(el));
 }
 
-document.addEventListener("DOMContentLoaded", render);
+whenReady(render);

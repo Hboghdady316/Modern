@@ -3,25 +3,9 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { CSS2DRenderer, CSS2DObject } from "three/addons/renderers/CSS2DRenderer.js";
 
-const skillsData = [
-  { name: "React", category: "Frontend", level: 95, color: "#61DAFB", position: [3, 0, 0], description: "Advanced React development with hooks, context, and performance optimization" },
-  { name: "Node.js", category: "Backend", level: 90, color: "#339933", position: [2.1, 2.1, 0], description: "Server-side JavaScript with Express, APIs, and microservices architecture" },
-  { name: "TypeScript", category: "Frontend", level: 88, color: "#3178C6", position: [0, 3, 0], description: "Type-safe JavaScript development with advanced TypeScript patterns" },
-  { name: "Python", category: "AI/ML", level: 85, color: "#3776AB", position: [-2.1, 2.1, 0], description: "Machine learning, data analysis, and backend development with Python" },
-  { name: "AWS", category: "Cloud", level: 82, color: "#FF9900", position: [-3, 0, 0], description: "Cloud infrastructure, serverless computing, and DevOps on AWS" },
-  { name: "Docker", category: "DevOps", level: 80, color: "#2496ED", position: [-2.1, -2.1, 0], description: "Containerization, orchestration, and deployment automation" },
-  { name: "Three.js", category: "Frontend", level: 75, color: "#000000", position: [0, -3, 0], description: "3D graphics, WebGL, and immersive web experiences" },
-  { name: "GraphQL", category: "Backend", level: 78, color: "#E10098", position: [2.1, -2.1, 0], description: "API design, schema definition, and efficient data fetching" },
-];
+import { siteContent, escapeHtml, whenReady } from "./site-content.js";
+const skillsData = siteContent.skills.map((skill, index, skills) => ({...skill, name: escapeHtml(skill.name), category: escapeHtml(skill.category), description: escapeHtml(skill.description), position: [Math.cos(index / skills.length * Math.PI * 2) * 3, Math.sin(index / skills.length * Math.PI * 2) * 3, 0]}));
 
-function webglSupported() {
-  try {
-    const canvas = document.createElement("canvas");
-    return !!(canvas.getContext("webgl") || canvas.getContext("experimental-webgl"));
-  } catch (e) {
-    return false;
-  }
-}
 
 function makeLabel(html, extraClass) {
   const div = document.createElement("div");
@@ -84,10 +68,6 @@ function init() {
   if (!container) return;
   const detailPanel = initDetailPanel();
 
-  if (!webglSupported()) {
-    renderFallbackGrid(container, detailPanel.show);
-    return;
-  }
 
   try {
     const scene = new THREE.Scene();
@@ -171,10 +151,10 @@ function init() {
       if (intersects.length) detailPanel.show(intersects[0].object.userData.skill);
     });
 
-    const clock = new THREE.Clock();
+    const startedAt = performance.now();
     function animate() {
       requestAnimationFrame(animate);
-      const t = clock.getElapsedTime();
+      const t = (performance.now() - startedAt) / 1000;
 
       raycaster.setFromCamera(pointer, camera);
       const intersects = raycaster.intersectObjects(orbs);
@@ -210,4 +190,4 @@ function init() {
   }
 }
 
-document.addEventListener("DOMContentLoaded", init);
+whenReady(init);
