@@ -5,7 +5,7 @@ import { tmpdir } from 'node:os';
 import path from 'node:path';
 import { createAdminServer } from './server.mjs';
 import { validateContent } from './validation.mjs';
-const original = JSON.parse(await readFile(new URL('../vanilla-site/data/content.json', import.meta.url), 'utf8'));
+const original = JSON.parse(await readFile(new URL('../site/data/content.json', import.meta.url), 'utf8'));
 
 test('content validation rejects unsafe URLs and duplicate project IDs', () => {
     validateContent(structuredClone(original));
@@ -25,17 +25,17 @@ test('content validation rejects unsafe URLs and duplicate project IDs', () => {
 
 test('owner sign-in, drafts, publishing, private media, recovery and inbox delivery', async t => {
     const root = await mkdtemp(path.join(tmpdir(), 'galaxy-admin-test-'));
-    await mkdir(path.join(root, 'vanilla-site/data'), { recursive: true });
-    await mkdir(path.join(root, 'admin'));
-    const file = path.join(root, 'vanilla-site/data/content.json');
+    await mkdir(path.join(root, 'portfolio/site/data'), { recursive: true });
+    await mkdir(path.join(root, 'portfolio/admin'), { recursive: true });
+    const file = path.join(root, 'portfolio/site/data/content.json');
     await writeFile(file, JSON.stringify(original));
-    await mkdir(path.join(root, 'vanilla-site/portfolio'));
-    await writeFile(path.join(root, 'vanilla-site/portfolio/category.html'), '<head><title>Category</title></head>');
-    await writeFile(path.join(root, 'vanilla-site/project.html'), '<head><title>Project</title></head>');
-    const homeTemplate = await readFile(new URL('../vanilla-site/index.html', import.meta.url));
-    await writeFile(path.join(root, 'vanilla-site/index.html'), homeTemplate);
-    const contactTemplate = await readFile(new URL('../vanilla-site/contact.html', import.meta.url));
-    await writeFile(path.join(root, 'vanilla-site/contact.html'), contactTemplate);
+    await mkdir(path.join(root, 'portfolio/site/portfolio'));
+    await writeFile(path.join(root, 'portfolio/site/portfolio/category.html'), '<head><title>Category</title></head>');
+    await writeFile(path.join(root, 'portfolio/site/project.html'), '<head><title>Project</title></head>');
+    const homeTemplate = await readFile(new URL('../site/index.html', import.meta.url));
+    await writeFile(path.join(root, 'portfolio/site/index.html'), homeTemplate);
+    const contactTemplate = await readFile(new URL('../site/contact.html', import.meta.url));
+    await writeFile(path.join(root, 'portfolio/site/contact.html'), contactTemplate);
     const delivered = [];
     let failDelivery = false;
     const password = 'test-owner-password';

@@ -1,5 +1,5 @@
-import { homeSectionOrder, homeSectionVisible } from '../vanilla-site/js/home-layout.js';
-import { escapeMarkup as esc, headerMarkup, footerMarkup, portraitMarkup, publicUrl } from '../vanilla-site/js/public-markup.js';
+import { homeSectionOrder, homeSectionVisible } from '../site/js/home-layout.js';
+import { escapeMarkup as esc, headerMarkup, footerMarkup, portraitMarkup, publicUrl } from '../site/js/public-markup.js';
 
 export function renderPublicPage(html, content, { origin, pathname, preview }) {
     const base = new URL('/', origin);

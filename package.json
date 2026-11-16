@@ -3,13 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "next build",
-    "dev": "next dev",
-    "lint": "next lint",
-    "start": "next start",
-    "dev:portfolio": "node admin/server.mjs",
-    "admin": "node admin/server.mjs",
-    "test:admin": "node --test admin/server.test.mjs admin/assets.test.mjs"
+    "build": "cd legacy/next-template && next build",
+    "dev": "cd legacy/next-template && next dev",
+    "lint": "cd legacy/next-template && next lint",
+    "start": "cd legacy/next-template && next start",
+    "dev:portfolio": "node portfolio/admin/server.mjs",
+    "admin": "node portfolio/admin/server.mjs",
+    "test:admin": "node --test portfolio/admin/server.test.mjs portfolio/admin/assets.test.mjs"
   },
   "dependencies": {
     "@emotion/is-prop-valid": "latest",

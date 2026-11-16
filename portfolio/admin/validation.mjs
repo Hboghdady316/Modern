@@ -1,4 +1,4 @@
-import { homeSections } from '../vanilla-site/js/home-layout.js';
+import { homeSections } from '../site/js/home-layout.js';
 const ids = ['social-media', 'logos-branding', 'outdoors', 'printings', 'magazines-catalogues', 'videos'];
 function fail(message) { throw new Error(message); }
 function string(value, label, max = 2000, required = false) {

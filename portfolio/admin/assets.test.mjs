@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { readFile, readdir, stat } from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
-const root = fileURLToPath(new URL('../vanilla-site/', import.meta.url));
+const root = fileURLToPath(new URL('../site/', import.meta.url));
 
 test('every public page resolves Three.js from bundled local assets', async () => {
   const pages = ['index.html', 'work.html', 'services.html', 'contact.html', 'privacy.html', 'project.html', '404.html', ...(await readdir(path.join(root, 'portfolio'))).filter(file => file.endsWith('.html')).map(file => `portfolio/${file}`)];

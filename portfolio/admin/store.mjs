@@ -1,4 +1,4 @@
-import { homeSectionVisible } from '../vanilla-site/js/home-layout.js';
+import { homeSectionVisible } from '../site/js/home-layout.js';
 import { DatabaseSync } from 'node:sqlite';
 import { mkdirSync, readFileSync, chmodSync } from 'node:fs';
 import path from 'node:path';

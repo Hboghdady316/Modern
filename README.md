@@ -1,113 +1,18 @@
-## Edit the website with the admin panel
+# Haitham Boghdady — Design Galaxy
 
-Run `npm run admin` from your IDE terminal, then open http://127.0.0.1:8080/admin/. The editor saves drafts, published content and uploads in SQLite. See [admin instructions](admin/README.md) for uploads, backups, and publishing.
+Work on the `dev` branch. From the repository root, run `npm run admin` (or `npm run dev:portfolio`) with Node.js 24.
 
-## Run Haitham’s current portfolio
+- [Portfolio preview](http://127.0.0.1:8080/)
+- [Owner admin](http://127.0.0.1:8080/admin/)
 
-Work on the `dev` branch. From your IDE’s terminal, in the repository root:
+Repository layout:
 
-```sh
-npm run dev:portfolio
-```
+| Folder | Purpose |
+| --- | --- |
+| [`portfolio/site/`](portfolio/site/) | Public website pages, styles, scripts, and assets |
+| [`portfolio/admin/`](portfolio/admin/) | Owner editor, SQLite server, and regression tests |
+| [`legacy/next-template/`](legacy/next-template/) | Original Next.js template, kept separately |
+| `.portfolio-data/` | Private local SQLite database and uploaded content; ignored by Git |
+| `.github/` and `.openai/` | Publishing configuration |
 
-Requires Node.js 24 LTS. This starts both the website and admin panel. Open http://127.0.0.1:8080/index.html for Haitham’s portfolio, then select the Social Media Designs planet. The category page is at http://127.0.0.1:8080/portfolio/social-media.html. Stop the server with Ctrl+C.
-
-This serves `vanilla-site` from the SQLite-backed Node server. Static GitHub Pages cannot run the admin or database. `npm run dev` starts the separate Next.js template. See [portfolio editing instructions](vanilla-site/portfolio/README.md) to add real artwork.
-
----
-
-# 🌌 Next-Gen Developer Portfolio 
-
-🔥 **A futuristic, award-winning, and fully responsive developer portfolio** built with **Next.js 14**, **Tailwind CSS**, and **Three.js**. This is not just a portfolio, it’s an **immersive 3D experience** to showcase your projects, skills, and personality like never before.
-
----
-
-## ✨ Features
-
-✅ **Ultra-Premium Design**
-
-* Glassmorphism & Neuromorphism effects
-* Animated 3D background (Three.js / WebGL)
-* Dark mode by default with light mode toggle
-
-✅ **Interactive & Dynamic**
-
-* AI-powered chatbot assistant in contact section
-* Gamified projects showcase in a 3D galaxy
-* Animated skill matrix with hover effects
-
-✅ **Modern Tech Stack**
-
-* Next.js 14 (App Router)
-* Tailwind CSS & Radix UI components
-* Framer Motion & GSAP for buttery-smooth animations
-* SEO-optimized & PWA-ready
-
-✅ **Open Source & Developer-Friendly**
-
-* Clean, modular, and reusable code structure
-* Easy to maintain and extend
-
----
-
-## 🚀 Demo
-
-🌐 [**View Live Demo**](https://s10-modern-portfolio.vercel.app)
-
----
-
-## 🖥️ Tech Stack
-
-* ⚡ **Frontend:** Next.js 14, Tailwind CSS, Framer Motion
-* 🎨 **3D/Animations:** Three.js, GSAP, Lottie
-* ☁️ **Hosting:** Vercel
-* 🔥 **Features:** PWA, Responsive, SEO-optimized
-
----
-
-## 🛠️ Installation
-
-```bash
-# Clone the repository
-git clone https://github.com/senotron/modern-portfolio.git
-
-# Go to the project directory
-cd modern-portfolio
-
-# Install dependencies
-npm install
-
-# Run the development server
-npm run dev
-
-# Open http://localhost:3000 in your browser
-```
-
----
-
-## ⭐ Contribution
-
-Contributions are welcome! Feel free to fork this repo and submit a pull request to improve this template.
-
----
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-## 🌟 Why Use This Portfolio?
-
-This is **not** a boring developer portfolio.
-It’s **next-gen**, **SEO-friendly**, and designed to get you noticed by recruiters, clients, and open source communities.
-
-✔️ Optimized for **GitHub trending**
-✔️ Google search friendly
-✔️ Visually stunning & technically solid
-
----
-
-## 🤖 Crafted by AI
-
-This README and portfolio were **crafted by artificial intelligence** for maximum creativity, SEO, and developer appeal. ✨
+Use the [admin guide](portfolio/admin/README.md) for content editing, backups, and hosting. Run `npm run test:admin` to check the active site and editor. The root `dev` and `build` scripts still target the original Next.js template.

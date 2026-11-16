@@ -1,4 +1,4 @@
-name: Deploy vanilla-site to GitHub Pages
+name: Deploy portfolio to GitHub Pages
 
 on:
   push:
@@ -30,7 +30,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./vanilla-site
+          path: ./portfolio/site
 
       - name: Deploy to GitHub Pages
         id: deployment

@@ -6,11 +6,11 @@ import { randomBytes, randomUUID, createHash, timingSafeEqual } from 'node:crypt
 import { openStore, publicContent, mediaReferences } from './store.mjs';
 import { renderPublicPage } from './public-page.mjs';
 import { validateContent } from './validation.mjs';
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 const types = { '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8', '.svg': 'image/svg+xml', '.png': 'image/png', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg', '.webp': 'image/webp', '.gif': 'image/gif', '.avif': 'image/avif', '.mp4': 'video/mp4', '.webm': 'video/webm', '.pdf': 'application/pdf', '.vtt': 'text/vtt; charset=utf-8' };
 const uploadTypes = { 'image/png': 'png', 'image/jpeg': 'jpg', 'image/webp': 'webp', 'image/gif': 'gif', 'image/avif': 'avif', 'video/mp4': 'mp4', 'video/webm': 'webm', 'application/pdf': 'pdf', 'text/vtt': 'vtt' };
 export function createAdminServer(root = repoRoot, options = {}) {
-    const siteRoot = path.join(root, 'vanilla-site'), adminRoot = path.join(root, 'admin');
+    const siteRoot = path.join(root, 'portfolio/site'), adminRoot = path.join(root, 'portfolio/admin');
     const dataDir = path.resolve(options.dataDir || path.join(root, '.portfolio-data'));
     if (dataDir === siteRoot || dataDir.startsWith(siteRoot + path.sep))
         throw Error('PORTFOLIO_DATA_DIR must be outside the public web root.');

@@ -5,6 +5,8 @@
 
 # next.js
 /.next/
+/legacy/next-template/.next/
+/legacy/next-template/out/
 /out/
 
 # production
@@ -30,7 +32,7 @@ next-env.d.ts
 .claude/
 
 # Local admin recovery snapshots
-/admin/.backups/
+/portfolio/admin/.backups/
 
 # Private SQLite content, drafts, and media
 /.portfolio-data/
