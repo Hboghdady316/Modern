@@ -1,53 +1,43 @@
-# Galaxy admin
+# Galaxy admin and portfolio server
 
-The local admin panel edits the portfolio’s real content files. It is separate from the public website and does not use browser-only storage for saved changes.
+## Run on dev
 
-## Run from your IDE
-
-Open the project on `dev`, then run in the integrated terminal:
+Use Node.js 24 LTS and start one server from the repository root:
 
 ```sh
 npm run admin
 ```
 
-Open **http://127.0.0.1:8080/admin/**. The website preview is at **http://127.0.0.1:8080/**. Stop the server with Ctrl+C. Node.js 20 or newer is required; no additional packages are needed.
+Open [Admin](http://127.0.0.1:8080/admin/) and [Website](http://127.0.0.1:8080/). If an older server is running, stop it in its terminal and restart. `npm run dev:portfolio` starts the same server. `npm run dev` is the separate Next.js template. Set `ADMIN_PORT=8081` to use another local port.
 
-`npm run dev:portfolio` is an alias for the same server, so either command opens both pages. Run only one at a time. Stop an older preview first if it is already using port 8080. To use a different port on macOS/Linux:
+## Owner walkthrough
 
-```sh
-ADMIN_PORT=8081 npm run admin
-```
+1. Sign in. The local preview only listens on this computer; if an owner password is configured it is required.
+2. In **Projects**, choose a category and project. Add a title and description, use **Choose a cover image**, and set **Show on website** to **Ready to show when I publish**. Use **More photos** to add gallery or process images from your computer. Video, case study fields, and credits are under **More project options**.
+3. **Preview** saves your edits privately and opens a preview. **More tools → Save draft** keeps edits private without opening a preview. **Publish changes** makes the current content visible on this server when the public website is refreshed. Visible categories show a planet even before any work is published. Archived projects, hidden projects, and placeholders stay off the public website.
+4. Under **Website details → More website settings**, use **Add service** and **Remove** to edit the service cards. Qualifications and testimonials have their own cards, along with the sharing image picker, Galaxy options, and homepage switches. Upload only a public CV that does not contain the owner's phone number. To unpublish a project, turn off visibility or mark it archived, then publish. To restore an earlier editable state, use **Backups & transfer** and review before publishing.
 
-`npm run dev` still launches the separate Next.js template; the admin manages `vanilla-site`.
+## Storage and recovery
 
-## What you can edit
+- SQLite owns drafts, published documents, recovery snapshots, uploaded media and aggregate counts. On first run it imports the checked-in seed; subsequent starts do not overwrite the database. Existing legacy image references can be read from the checkout; new uploads are SQLite BLOBs.
+- Default storage is `.portfolio-data/portfolio.sqlite`. It is outside the web root and ignored by Git. Set `PORTFOLIO_DATA_DIR` to a private persistent directory in production. Use one server instance per database.
+- To make a full backup, stop the service and copy the persistent data directory, plus any legacy uploads used by the deployment. Store encrypted backups outside the host and test recovery on a separate instance. To restore, stop the service, keep a copy of the current database, replace the data directory with the backed-up directory, restore file ownership, then restart and verify private and public views.
+- The editor offers content JSON export and snapshot restore. JSON export alone does not include media bytes. Unpublishing makes uploads unavailable to visitors when no other published content references them; it does not erase them from recovery history.
 
-- Website details: name, role, location, hero tagline, biography, contact details, resume PDF, social links.
-- Galaxy: title, introduction, default Ordered/Random arrangement, section visibility.
-- Categories: names, colors, icons, descriptions, covers, tags, visibility for the existing six planets.
-- Projects: add/remove/reorder, title, description, filter label, format, image, video, placeholder status, visibility.
-- Skills & learning: skill names, groups, levels, colors, descriptions, learning topics/progress, and widget visibility.
-- Experience: add/remove/reorder timeline entries, dates, company, location, tools, achievements.
-- Backups: export/import the full content JSON; load an earlier snapshot as a draft.
+## Production handover
 
-Click **Save changes** to write `vanilla-site/data/content.json`. Open local previews refresh automatically after a save. Reload the admin page once after updating its code to activate this behavior. Uploads are saved under `vanilla-site/assets/uploads/`; upload image/video/PDF files up to 30 MB. Uploaded files are not automatically removed when a project is deleted, so other references and recovery snapshots keep working.
+The existing static preview and GitHub Pages cannot run this Node/SQLite app. SQLite is the default for this single-server portfolio. Reconsider PostgreSQL if deployment requires multiple app servers sharing one database or sustained concurrent writes. Deploy to a Node 24 host with a persistent disk and an HTTPS reverse proxy on the same machine. Proxy the canonical Host over to the loopback listener. Set secrets through the host configuration; never commit them.
 
-Direct MP4/WebM links play in the project dialog. Other HTTP(S) video URLs open their original page. Images and projects can remain marked as placeholders until real artwork is ready.
+| Setting | Purpose |
+| --- | --- |
+| `PUBLIC_ORIGIN` | Canonical HTTPS origin, without a trailing slash. Enables secure cookies, canonical URLs and the sitemap. |
+| `ADMIN_PASSWORD` | Unique owner password, at least 16 characters in hosted mode. No registration. For recovery, rotate it in the host secret settings and restart; restart revokes all sessions. |
+| `PORTFOLIO_DATA_DIR` | Persistent private storage path, separate from public assets. |
+| `INQUIRY_WEBHOOK` | HTTPS mail integration that sends the provided `to`, `replyTo`, `subject`, `message`, and inquiry fields. Return success only after accepting delivery. Without this setting the form reports unavailable and offers email. |
+| `INQUIRY_WEBHOOK_TOKEN` | Optional bearer secret for the mail integration. |
 
-## Recovery and simultaneous edits
+Before public release: agree hosting/domain, approved content and CV, inbox and booking URL, privacy text, recurring costs and support ownership. Verify actual inbox delivery and retry behavior, book a test appointment, test downloads and media, confirm owner sign-in/recovery, and rehearse restoration. Do not point the live domain at the new service before acceptance. Direct MP4/WebM video and WebVTT captions are supported; use compressed artwork and a video host for larger clips. Each admin upload is limited to 30 MB.
 
-Every save keeps the previous JSON in `admin/.backups/`. This directory is ignored by Git and is never part of the public website. The Backups tab displays the most recent 30 snapshots. Loading/importing creates a draft; Save changes applies it. Export a draft before reloading if another panel changed the file: stale saves are rejected instead of overwriting newer content.
+Run `npm run test:admin` to verify database persistence, access controls, draft isolation, public refresh, recovery, uploads and inquiry handling using a temporary database.
 
-## Publishing
-
-Saving updates the local project. Deploy the updated `vanilla-site` files to update the shared website. GitHub Pages continues to deploy from `main`; development stays on `dev`. The existing Sites preview can also be republished from this same static directory. The public site reads the same `data/content.json` and uses the uploaded assets.
-
-The `admin/` directory is outside `vanilla-site` and is **not served by GitHub Pages or the Sites static deployment**. This panel runs on your computer, bound to loopback only, with Host/Origin checks and per-run write tokens. It is not an internet-facing CMS and must not be exposed through a public tunnel. A remotely accessible admin requires server hosting, authentication, and persistent storage.
-
-## Validation
-
-```sh
-npm run test:admin
-```
-
-Tests use a temporary project, not your website files, and verify content validation, real saves, recovery backups, stale-write conflicts, upload serving, and request access checks.
+Use **Website details → Homepage layout** to move sections up or down and choose which appear. **Currently Learning topics** lets you edit, reorder, or hide individual topics. Use **Preview** to check your draft layout or **Publish changes** to show it to visitors.

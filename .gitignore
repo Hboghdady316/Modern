@@ -31,3 +31,6 @@ next-env.d.ts
 
 # Local admin recovery snapshots
 /admin/.backups/
+
+# Private SQLite content, drafts, and media
+/.portfolio-data/

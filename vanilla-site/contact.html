@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contact | Haitham Boghdady</title>
+  <meta name="description" content="Tell me about your project, a role you’re hiring for, or an idea you’d like to explore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/portfolio.css">
+  <link rel="stylesheet" href="./css/project.css">
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/build/three.module.js"}}</script>
+  <script type="module" src="./js/particles.js"></script>
+  <script type="module" src="./js/contact.js"></script>
+  <script type="module" src="./js/site-content.js"></script>
+  <script type="module" src="./js/site-header.js"></script>
+<link rel="stylesheet" href="./css/select-menu.css">
+</head>
+<body class="portfolio-page galaxy-page" data-portfolio-page="contact">
+<div id="hero-canvas-wrap" aria-hidden="true"></div>
+<a class="skip-link" href="#page-main">Skip to content</a>
+<header id="site-header" class="site-header"></header>
+<main id="page-main" class="wrap galaxy-main">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a><span aria-hidden="true">/</span><span aria-current="page">Contact</span></nav>
+  <div class="galaxy-hero"><p class="eyebrow">LET’S CONNECT</p><h1 class="liquid-gradient font-sora">Start a conversation</h1><p class="project-lead">Tell me about your project, a role you’re hiring for, or an idea you’d like to explore.</p></div>
+  <div class="contact-grid galaxy-content">
+    <section class="project-panel"><h2 class="font-sora">Send a message</h2><form class="contact-form" id="contact-form">
+                <label>Inquiry type <select name="type" class="input"><option value="project">Project inquiry</option><option value="job">Job opportunity</option><option value="other">Collaboration / other</option></select></label>
+                <label>Name <input class="input" name="name" autocomplete="name" maxlength="150" required /></label>
+                <label>Email <input class="input" name="email" type="email" autocomplete="email" maxlength="250" required /></label>
+                <div id="inquiry-fields"></div>
+                <label>Message <textarea class="textarea" name="message" maxlength="5000" required></textarea></label>
+                <label hidden>Leave blank <input name="website" tabindex="-1" autocomplete="off"></label>
+                <p><a href="privacy.html">How inquiry information is used</a></p>
+                <p id="inquiry-status" role="status"></p>
+                <button type="submit" class="project-action project-action-primary">Send message</button>
+              </form></section>
+    <aside class="project-panel"><h2 class="font-sora">Other ways to connect</h2>
+      <div class="contact-options"><a class="project-action" data-contact-email href="mailto:h.boghdady316@gmail.com">Email Haitham</a><a class="project-action" data-booking hidden>Book a meeting</a></div>
+      <p data-availability></p><div id="social-links" class="social-grid"></div>
+    </aside>
+  </div>
+</main>
+<footer id="site-footer" class="shared-footer"></footer>
+
+</body>
+</html>

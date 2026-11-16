@@ -8,44 +8,39 @@ function badge(text) {
 }
 
 function openDetail(item) {
-  const overlay = document.createElement("div");
-  overlay.className = "modal-overlay";
-  overlay.innerHTML = `
-    <div class="modal-box glass-morphism">
-      <h3 style="font-size:1.5rem;font-weight:700;color:#fff;margin-bottom:1rem;">${item.title}</h3>
-      <p style="color:rgba(255,255,255,0.8);margin-bottom:1.5rem;">${item.description}</p>
-      <h4 style="font-size:1.125rem;font-weight:600;color:#22d3ee;margin-bottom:0.75rem;">Key Achievements:</h4>
-      <ul class="modal-achieve">${item.achievements.map((a) => `<li>${a}</li>`).join("")}</ul>
-      <div class="modal-tech">${item.technologies.map((t) => badge(t)).join("")}</div>
+  const dialog = document.createElement("dialog");
+  dialog.className = "project-viewer timeline-dialog";
+  dialog.setAttribute("aria-labelledby", "experience-dialog-title");
+  dialog.innerHTML = `
+    <div class="project-viewer-head">
+      <h3 id="experience-dialog-title" class="font-sora">${item.title}</h3>
+      <form method="dialog"><button class="project-action">Close</button></form>
     </div>
+    <p>${item.description}</p>
+    ${item.achievements.length ? `<h4>Key achievements</h4><ul class="modal-achieve">${item.achievements.map(a => `<li>${a}</li>`).join("")}</ul>` : ""}
+    <div class="modal-tech">${item.technologies.map(badge).join("")}</div>
   `;
-  document.body.appendChild(overlay);
-  requestAnimationFrame(() => overlay.classList.add("open"));
-
-  function close() {
-    overlay.classList.remove("open");
-    setTimeout(() => overlay.remove(), 250);
-  }
-  overlay.addEventListener("click", (e) => {
-    if (e.target === overlay) close();
-  });
-  overlay.querySelector(".modal-box").addEventListener("click", (e) => e.stopPropagation());
+  dialog.addEventListener("close", () => dialog.remove(), { once: true });
+  document.body.append(dialog);
+  dialog.showModal();
 }
 
 function render() {
   const wrap = document.getElementById("timeline-items");
   if (!wrap) return;
 
+  if (!timelineData.length) {
+    wrap.textContent = 'Experience details coming soon.';
+    return;
+  }
+  const fragment = document.createDocumentFragment();
   timelineData.forEach((item, index) => {
     const row = document.createElement("div");
     row.className = `timeline-item${index % 2 !== 0 ? " reverse" : ""}`;
-    row.dataset.animate = "fade-up";
-    row.dataset.delay = String(index * 200);
-    row.dataset.duration = "600";
 
     row.innerHTML = `
       <div class="timeline-card-col">
-        <div class="timeline-card hover-scale">
+        <div class="timeline-card">
           <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
             <div class="card-body">
               <div class="timeline-row">
@@ -67,6 +62,7 @@ function render() {
               }
               <p class="timeline-desc">${item.description}</p>
               <div class="timeline-tags">${item.technologies.map((t) => badge(t)).join("")}</div>
+              <button type="button" class="project-action timeline-details">View experience</button>
             </div>
           </div>
         </div>
@@ -75,29 +71,12 @@ function render() {
       <div class="timeline-spacer"></div>
     `;
 
-    row.querySelector(".timeline-card").addEventListener("click", () => openDetail(item));
-    wrap.appendChild(row);
+    row.querySelector(".timeline-details").addEventListener("click", () => openDetail(item));
+    fragment.appendChild(row);
   });
 
+  wrap.replaceChildren(fragment);
   window.__renderIcons?.();
 
-  // newly injected [data-animate] items need the observer main.js already set up on DOMContentLoaded;
-  // re-run a lightweight version here since these nodes were added after that pass.
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const el = entry.target;
-          el.style.transitionDelay = `${el.dataset.delay || 0}ms`;
-          el.style.transitionDuration = `${el.dataset.duration || 800}ms`;
-          el.classList.add("in-view");
-          io.unobserve(el);
-        }
-      });
-    },
-    { threshold: 0.15, rootMargin: "0px 0px -10% 0px" },
-  );
-  wrap.querySelectorAll("[data-animate]").forEach((el) => io.observe(el));
 }
-
 whenReady(render);

@@ -6,12 +6,12 @@ import { fileURLToPath } from 'node:url';
 const root = fileURLToPath(new URL('../vanilla-site/', import.meta.url));
 
 test('every public page resolves Three.js from bundled local assets', async () => {
-  const pages = ['index.html', ...(await readdir(path.join(root, 'portfolio'))).filter(file => file.endsWith('.html')).map(file => `portfolio/${file}`)];
+  const pages = ['index.html', 'work.html', 'services.html', 'contact.html', 'privacy.html', 'project.html', '404.html', ...(await readdir(path.join(root, 'portfolio'))).filter(file => file.endsWith('.html')).map(file => `portfolio/${file}`)];
   for (const page of pages) {
     const html = await readFile(path.join(root, page), 'utf8');
     const map = JSON.parse(html.match(/<script type="importmap">([\s\S]*?)<\/script>/)[1]);
-    assert.ok(map.imports.three.startsWith('.'), `${page} must not require a graphics CDN`);
-    const module = path.resolve(root, path.dirname(page), map.imports.three);
+    assert.ok(/^[./]/.test(map.imports.three), `${page} must not require a graphics CDN`);
+    const module = map.imports.three.startsWith('/') ? path.join(root, map.imports.three.slice(1)) : path.resolve(root, path.dirname(page), map.imports.three);
     assert.ok((await stat(module)).isFile());
     const source = await readFile(module, 'utf8');
     for (const match of source.matchAll(/from\s*['"](\.\.?\/[^'"]+)['"]/g)) {

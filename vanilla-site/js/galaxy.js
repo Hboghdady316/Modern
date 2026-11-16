@@ -1,4 +1,4 @@
-import { siteContent, whenReady, escapeHtml } from "./site-content.js";
+import { siteContent, whenReady, escapeHtml, previewLink } from "./site-content.js";
 // Project Galaxy: 3D planets (port of components/3d/project-galaxy.tsx) + filter (project-filter.tsx)
 let THREE, OrbitControls, CSS2DRenderer, CSS2DObject;
 
@@ -56,7 +56,7 @@ function initFilters() {
 }
 
 function openModal(project) {
-  project = { ...project, name: escapeHtml(project.name), description: escapeHtml(project.description), image: escapeHtml(project.image), url: escapeHtml(project.url), formats: project.formats.map(escapeHtml) };
+  project = { ...project, name: escapeHtml(project.name), description: escapeHtml(project.description), image: escapeHtml(project.image), url: escapeHtml(previewLink(project.url)), formats: project.formats.map(escapeHtml) };
   const overlay = document.getElementById("project-modal");
   const box = document.getElementById("project-modal-box");
   box.innerHTML = `
@@ -68,8 +68,8 @@ function openModal(project) {
         <p style="color:rgba(255,255,255,0.8);margin-bottom:1rem;">${project.description}</p>
         <div class="modal-tech">${project.formats.map((t) => `<span>${t}</span>`).join("")}</div>
         <div class="modal-actions">
-          <a class="btn btn-md btn-outline-purple glass-morphism" href="${project.url}" target="_blank" rel="noopener noreferrer">
-            <span data-lucide="external-link"></span>View Projects <span class="sr-only">(opens in a new tab)</span>
+          <a class="btn btn-md btn-outline-purple glass-morphism" href="${project.url}">
+            <span data-lucide="external-link"></span>View Projects
           </a>
         </div>
       </div>
@@ -147,7 +147,7 @@ function initScene(container, onUnavailable) {
       }
       return randomPositions[index];
     }
-    return narrow ? [index % 2 ? 1 : -1, 1.8 - Math.floor(index / 2) * 1.8, 0] : project.position;
+    return narrow ? [index % 2 ? 1 : -1, 1.8 - Math.floor(index / 2) * 1.8, 0] : [(index % 3 - 1) * 2.2, index < 3 ? 1.25 : -1.25, 0];
   }
 
   function setArrangement() {
@@ -299,13 +299,18 @@ function initScene(container, onUnavailable) {
 async function init() {
   const container = document.getElementById("projects-canvas-target");
   if (!container) return;
+  if (!projectsData.length) {
+    document.getElementById('projects').hidden = true;
+    document.querySelectorAll('a[href="#projects"], [data-section-link="projects"]').forEach(link => { link.hidden = true; });
+    return;
+  }
 
   const access = document.querySelector('.category-access');
   access.replaceChildren();
   projectsData.forEach(category => {
     const entry = document.createElement('div'); entry.className = 'category-entry glass-morphism';
     const button = document.createElement('button'); button.type = 'button'; button.className = 'btn btn-md btn-ghost'; button.dataset.categoryDetails = category.id; button.textContent = category.name;
-    const link = document.createElement('a'); link.href = category.url; link.target = '_blank'; link.rel = 'noopener noreferrer'; link.textContent = 'View Projects ↗'; link.setAttribute('aria-label', `View ${category.name} projects (opens in a new tab)`);
+    const link = document.createElement('a'); link.href = previewLink(category.url); link.textContent = 'View Projects ↗'; link.setAttribute('aria-label', `View ${category.name} projects`);
     entry.append(button, link); access.append(entry);
   });
   initFilters();
@@ -317,12 +322,12 @@ async function init() {
   });
 
   function useFallback() {
-    sceneApi?.dispose?.();
+    try { sceneApi?.dispose?.(); } catch (error) { console.warn('Could not release Galaxy graphics.', error); }
     sceneApi = createFallbackGalaxy(container, { projects: projectsData, getLayout: () => selectedLayout, onSelect: openModal });
     sceneApi.setFilter(selectedFilter);
-    document.getElementById("galaxy-layout-status").textContent = 'Showing lightweight planets. Ordered, Random, and category details remain available.';
+    document.getElementById("galaxy-layout-status").textContent = selectedLayout === 'random' ? 'Planets are randomly spread. Choose Shuffle again for a new arrangement.' : 'Planets are arranged in an ordered layout.';
   }
-  if (new URLSearchParams(window.location.search).get("galaxy") === "2d") {
+  if (projectsData.length > 6 || new URLSearchParams(window.location.search).get("galaxy") !== "3d" || matchMedia("(prefers-reduced-motion: reduce)").matches) {
     useFallback();
     return;
   }
@@ -339,8 +344,6 @@ async function init() {
     document.getElementById("galaxy-layout-status").textContent = selectedLayout === "random"
       ? "Planets are randomly spread. Choose Shuffle again for a new arrangement."
       : "Planets are arranged in an ordered layout.";
-    const originalSetFilter = sceneApi.setFilter;
-    sceneApi.setFilter = (f) => originalSetFilter(f);
   } catch (err) {
     useFallback();
 

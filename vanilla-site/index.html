@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Haitham Boghdady - Creative Technologist</title>
-<meta name="description" content="Inventing tomorrow's web, one line of code at a time." />
+<meta name="description" content="Portfolio of Haitham Boghdady, Senior Graphic Designer &amp; AI Creative Specialist." />
 <meta name="keywords" content="developer, portfolio, full-stack, creative technologist" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,43 +18,21 @@
   }
 }
 </script>
+<link rel="stylesheet" href="css/project.css">
+  <script type="module" src="./js/site-header.js"></script>
+<link rel="stylesheet" href="./css/select-menu.css">
 </head>
 <body>
+<header id="site-header" class="site-header"></header>
 <main>
-
-  <!-- ============ NAVIGATION ============ -->
-  <nav class="nav" id="nav">
-    <div class="container nav-inner">
-      <div class="nav-row">
-        <div class="nav-logo liquid-gradient font-sora hover-scale">Haitham Boghdady</div>
-
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-          <button class="btn btn-icon btn-ghost" id="theme-toggle" aria-label="Toggle theme"></button>
-        </div>
-
-        <div class="nav-mobile-toggle">
-          <button class="btn btn-icon btn-ghost" id="mobile-menu-btn" aria-label="Toggle menu"></button>
-        </div>
-      </div>
-
-      <div class="nav-mobile-menu glass-morphism" id="mobile-menu">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
-        <a href="#contact">Contact</a>
-      </div>
-    </div>
-  </nav>
+<div id="hero-canvas-wrap" aria-hidden="true"></div>
+<div id="homepage-sections">
+<!-- home-layout:start -->
 
   <!-- ============ HERO ============ -->
-  <section id="home">
-    <div id="hero-canvas-wrap"></div>
+
+<!-- home-block:home -->
+<section id="home">
 
     <div class="webgl-warning glass-morphism webgl-warning-inner" id="webgl-warning" style="display:none;">
       <div class="webgl-warning-content">
@@ -69,24 +47,22 @@
           <div class="avatar-ring-outer"></div>
           <div class="avatar-ring-inner"></div>
           <div class="avatar-core">
-            <div class="avatar-inner">👨‍💻</div>
+            <div class="avatar-inner"><span data-portrait-fallback>✦</span><img data-profile-portrait alt="" hidden></div>
           </div>
           <div class="avatar-glow"></div>
         </div>
 
         <h1 class="hero-name liquid-gradient font-sora" data-animate="fade" data-delay="800" data-duration="1000">Haitham Boghdady</h1>
 
-        <p class="hero-sub" data-animate="fade-up-sm" data-delay="1000" data-duration="800">
-          Main character energy, limitless execution.
-        </p>
+        <p class="hero-role">Senior Graphic Designer &amp; AI Creative Specialist</p>
+        <p class="hero-sub">Brand identities, social campaigns, and AI-assisted creative work.</p>
 
         <div class="hero-cta" data-animate="fade-up-sm" data-delay="1200" data-duration="800">
-          <button class="btn btn-lg btn-outline-cyan glass-morphism hover-glow">
-            <span data-lucide="rocket"></span>Dive Into My Universe
+          <a class="btn btn-lg btn-outline-cyan glass-morphism hover-glow" href="work.html">View Work</a>
+          <button id="cv-download" class="btn btn-lg btn-outline-purple glass-morphism hover-glow" disabled>
+            <span data-lucide="download"></span>Download CV
           </button>
-          <button class="btn btn-lg btn-outline-purple glass-morphism hover-glow">
-            <span data-lucide="download"></span>Download Resume
-          </button>
+          <a class="btn btn-lg btn-outline-purple glass-morphism hover-glow" href="contact.html">Contact</a>
         </div>
       </div>
     </div>
@@ -97,9 +73,12 @@
       </div>
     </div>
   </section>
+<!-- /home-block -->
 
   <!-- ============ ABOUT ============ -->
-  <section id="about" class="section">
+
+<!-- home-block:about -->
+<section id="about" class="section">
     <div class="container">
       <div class="section-head" data-animate="fade-up" data-duration="800">
         <h2 class="section-title liquid-gradient font-sora">About Me</h2>
@@ -110,60 +89,52 @@
         </p>
       </div>
 
-      <div style="margin-bottom:4rem;" data-animate="fade" data-delay="300" data-duration="800">
+      <div id="about-extras"></div>
+    </div>
+  </section>
+<!-- /home-block -->
+
+<!-- home-block:experience -->
+<section id="experience" class="section homepage-experience" aria-labelledby="experience-title">
+    <div class="container">
+        <h2 id="experience-title" class="font-sora">Work experience</h2>
         <div class="timeline" id="timeline">
           <div class="timeline-line"></div>
-          <div class="timeline-items" id="timeline-items"></div>
+          <div class="timeline-items" id="timeline-items"><p class="section-loading" role="status">Loading work experience…</p></div>
         </div>
       </div>
+  </section>
+<!-- /home-block -->
 
-      <div class="about-grid">
-        <div data-animate="fade-left" data-delay="500" data-duration="800">
-          <!-- Live GitHub Widget -->
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);" id="github-widget-card">
-            <div class="card-header">
-              <div class="card-title"><span class="icon-github text-green"></span>Currently Building</div>
-            </div>
-            <div class="card-body">
-              <div class="widget-stats">
-                <div class="widget-stat hover-scale">
-                  <div class="widget-stat-num text-green" id="gh-commits">1247</div>
-                  <div class="widget-stat-label">Total Commits</div>
-                </div>
-                <div class="widget-stat hover-scale">
-                  <div class="widget-stat-num" style="color:#facc15;" id="gh-stars">89</div>
-                  <div class="widget-stat-label">Stars Earned</div>
-                </div>
-              </div>
-              <div class="widget-row">
-                <div class="widget-row-left"><span data-lucide="git-commit" class="text-cyan"></span>Last commit:</div>
-                <span class="badge" style="background:rgba(74,222,128,0.2); color:#4ade80;" id="gh-last-commit">2 hours ago</span>
-              </div>
-              <div class="widget-activity">
-                Recent Activity:
-                <div class="widget-activity-item">🚀 Updated portfolio design system</div>
-                <div class="widget-activity-item">✨ Added 3D animations to hero section</div>
-                <div class="widget-activity-item">🔧 Optimized build performance</div>
-              </div>
-            </div>
-          </div>
+<!-- home-block:services -->
+<section class="section home-services" id="services" aria-labelledby="home-services-title" hidden>
+        <div class="container">
+        <div class="section-head"><p class="eyebrow">WHAT I DO</p><h2 class="section-title liquid-gradient font-sora" id="home-services-title">Services I Offer</h2><p class="section-desc">Creative support for brands, campaigns, and teams.</p></div>
+        <div class="service-grid" data-service-cards data-compact></div>
+        <div class="project-actions"><a class="project-action project-action-primary" href="services.html">Explore all services</a><a class="project-action" href="contact.html">Discuss a project</a></div>
         </div>
+      </section>
+<!-- /home-block -->
 
-        <div data-animate="fade-right" data-delay="700" data-duration="800">
-          <!-- Currently Learning Widget -->
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
-            <div class="card-header">
-              <div class="card-title"><span data-lucide="book-open" class="text-purple"></span>Currently Learning</div>
-            </div>
-            <div class="card-body" id="learning-list"></div>
-          </div>
-        </div>
+<!-- home-block:learning -->
+<section id="learning" class="section homepage-learning" aria-labelledby="learning-title">
+    <div class="container">
+      <div class="card glass-morphism">
+        <div class="card-header"><h2 class="card-title" id="learning-title"><span data-lucide="book-open" class="text-purple"></span>Currently Learning</h2></div>
+        <div class="card-body" id="learning-list"></div>
       </div>
     </div>
   </section>
+<!-- /home-block -->
 
   <!-- ============ PROJECTS ============ -->
-  <section id="projects" class="section" style="min-height:100vh;">
+
+<!-- home-block:featured -->
+<section id="featured" class="section" hidden><div class="container"><h2 class="section-title">Selected work</h2><div id="featured-work" class="work-grid"></div><a href="work.html">Browse Work</a> · <a href="services.html">Explore Services</a></div></section>
+<!-- /home-block -->
+
+<!-- home-block:projects -->
+<section id="projects" class="section">
     <div class="container">
       <div class="section-head" data-animate="fade-up" data-duration="800">
         <h2 class="section-title liquid-gradient font-sora">Project Galaxy</h2>
@@ -177,7 +148,7 @@
           <button type="button" class="btn btn-md glass-morphism" data-layout="random" aria-pressed="false">Random</button>
           <button type="button" class="btn btn-md glass-morphism" id="shuffle-planets" hidden>Shuffle again ↻</button>
         </div>
-        <p class="galaxy-layout-status" id="galaxy-layout-status" role="status">Planets are arranged in an ordered layout.</p>
+        <p class="galaxy-layout-status" id="galaxy-layout-status" role="status">Loading project categories…</p>
       </div>
 
       <div id="projects-canvas-wrap">
@@ -214,24 +185,98 @@
       </div>
     </div>
   </section>
+<!-- /home-block -->
 
   <!-- ============ SKILLS ============ -->
-  <section id="skills" class="section">
+
+<!-- home-block:skills -->
+<section id="skills" class="section">
     <div class="container">
       <div class="section-head" data-animate="fade-up" data-duration="800">
         <h2 class="section-title liquid-gradient font-sora">Skills Matrix</h2>
         <p class="section-desc">
-          Interactive 3D visualization of my technical expertise. Hover over each skill to see it in action.
+          Explore my skills as planets. Select one to see its focus, proficiency, and how I use it.
         </p>
       </div>
 
       <div id="skills-canvas-wrap">
-        <div id="skills-canvas-target" style="width:100%;height:100%;"></div>
-        <div class="skill-detail-panel glass-morphism" id="skill-detail-panel"></div>
+        <div id="skills-canvas-target"></div>
+        <dialog class="project-viewer skill-dialog" id="skill-detail-panel" aria-labelledby="skill-dialog-title">
+          <div class="project-viewer-head">
+            <h3 class="font-sora" id="skill-dialog-title"></h3>
+            <form method="dialog"><button class="project-action">Close</button></form>
+          </div>
+          <div class="skill-detail-meta">
+            <span class="skill-detail-cat" id="skill-dialog-category"></span>
+            <meter id="skill-dialog-meter" min="0" max="100" aria-label="Proficiency"></meter>
+            <span id="skill-dialog-level"></span>
+          </div>
+          <p class="skill-detail-desc" id="skill-dialog-description"></p>
+        </dialog>
       </div>
     </div>
   </section>
+<!-- /home-block -->
 
+  <!-- ============ CONTACT ============ -->
+
+<!-- home-block:contact -->
+<section id="contact" class="section">
+    <div class="container">
+      <div class="section-head" data-animate="fade-up" data-duration="800">
+        <h2 class="section-title liquid-gradient font-sora">Let's Connect</h2>
+        <p class="section-desc">Ready to bring your ideas to life? Let's discuss how we can create something amazing together.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div data-animate="fade-left" data-delay="200" data-duration="800">
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header">
+              <div class="card-title">💬 Send a Message</div>
+            </div>
+            <div class="card-body">
+              <form class="contact-form" id="contact-form">
+                <label>Inquiry type <select name="type" class="input"><option value="project">Project inquiry</option><option value="job">Job opportunity</option><option value="other">Collaboration / other</option></select></label>
+                <label>Name <input class="input" name="name" autocomplete="name" maxlength="150" required /></label>
+                <label>Email <input class="input" name="email" type="email" autocomplete="email" maxlength="250" required /></label>
+                <div id="inquiry-fields"></div>
+                <label>Message <textarea class="textarea" name="message" maxlength="5000" required></textarea></label>
+                <label hidden>Leave blank <input name="website" tabindex="-1" autocomplete="off"></label>
+                <p><a href="privacy.html">How inquiry information is used</a></p>
+                <p id="inquiry-status" role="status"></p>
+                <button type="submit" class="btn btn-lg btn-cyan-solid glass-morphism hover-glow" style="width:100%;">
+                  <span data-lucide="send"></span>Send Message
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div data-animate="fade-right" data-delay="400" data-duration="800" style="display:flex;flex-direction:column;gap:1.5rem;">
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header"><div class="card-title">📞 Get in Touch</div></div>
+            <div class="card-body contact-info-list">
+              <div class="contact-info-row"><span data-lucide="mail" class="text-cyan"></span>h.boghdady316@gmail.com</div>
+              <div class="contact-info-row"><span data-lucide="map-pin" class="text-purple"></span>Cairo, Egypt</div><p data-availability></p><a data-booking hidden>Book a meeting</a>
+            </div>
+          </div>
+
+          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
+            <div class="card-header"><div class="card-title">🌐 Connect Online</div></div>
+            <div class="card-body">
+              <div class="social-grid" id="social-links"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+<!-- /home-block -->
+
+<!-- home-layout:end -->
+</div>
   <!-- ============ BLOG (hidden) ============ -->
   <section id="blog" class="section" style="display:none;">
     <div class="container">
@@ -266,89 +311,12 @@
     </div>
   </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="section-head" data-animate="fade-up" data-duration="800">
-        <h2 class="section-title liquid-gradient font-sora">Let's Connect</h2>
-        <p class="section-desc">Ready to bring your ideas to life? Let's discuss how we can create something amazing together.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div data-animate="fade-left" data-delay="200" data-duration="800">
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
-            <div class="card-header">
-              <div class="card-title">💬 Send a Message</div>
-            </div>
-            <div class="card-body">
-              <form class="contact-form" id="contact-form">
-                <input class="input" type="text" placeholder="Your Name" id="cf-name" required />
-                <input class="input" type="email" placeholder="Your Email" id="cf-email" required />
-                <div class="field-wrap">
-                  <textarea class="textarea" placeholder="Your Message" id="cf-message" required></textarea>
-                  <button type="button" class="btn btn-icon btn-ghost mic-btn" id="mic-toggle"></button>
-                </div>
-                <button type="submit" class="btn btn-lg btn-cyan-solid glass-morphism hover-glow" style="width:100%;">
-                  <span data-lucide="send"></span>Send Message
-                </button>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <div data-animate="fade-right" data-delay="400" data-duration="800" style="display:flex;flex-direction:column;gap:1.5rem;">
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
-            <div class="card-header"><div class="card-title">📞 Get in Touch</div></div>
-            <div class="card-body contact-info-list">
-              <div class="contact-info-row"><span data-lucide="mail" class="text-cyan"></span>h.boghdady316@gmail.com</div>
-              <div class="contact-info-row"><span data-lucide="phone" class="text-green"></span>(+20) 1095091603</div>
-              <div class="contact-info-row"><span data-lucide="map-pin" class="text-purple"></span>Cairo, Egypt</div>
-            </div>
-          </div>
-
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
-            <div class="card-header"><div class="card-title">🤖 AI Assistant</div></div>
-            <div class="card-body">
-              <div class="ai-msg">
-                <div class="ai-avatar">AI</div>
-                <div class="ai-bubble">
-                  Hi! I'm Haitham's AI assistant. I can help answer questions about his experience, schedule meetings, or provide project details. What would you like to know?
-                </div>
-              </div>
-              <div class="ai-suggestions">
-                <span class="badge">Tell me about Haitham's experience</span>
-                <span class="badge">What technologies does he use?</span>
-                <span class="badge">Schedule a meeting</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="card glass-morphism" style="border:1px solid rgba(255,255,255,0.2);">
-            <div class="card-header"><div class="card-title">🌐 Connect Online</div></div>
-            <div class="card-body">
-              <div class="social-grid" id="social-links"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <footer class="site-footer" data-animate="fade-up" data-delay="600" data-duration="800">
-        <div class="footer-row">
-          <div class="footer-copy">© 2026 Haitham Boghdady. Crafted with ❤️ and cutting-edge tech.</div>
-          <div class="footer-meta">
-            <div class="footer-bar animate-pulse"></div>
-            <span class="footer-power">Powered by vanilla JS &amp; Three.js</span>
-          </div>
-        </div>
-      </footer>
-    </div>
-  </section>
-
 </main>
+<footer id="site-footer" class="shared-footer"></footer>
 
 <div id="toast-container"></div>
 
-<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+<script async id="optional-icons" src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
 <script type="module" src="js/main.js"></script>
 <script type="module" src="js/particles.js"></script>
 <script type="module" src="js/skills.js"></script>
@@ -357,5 +325,8 @@
 <script type="module" src="js/widgets.js"></script>
 <script type="module" src="js/blog.js"></script>
 <script type="module" src="js/contact.js"></script>
+<script type="module" src="js/featured.js"></script>
+<script type="module" src="js/services.js"></script>
+<script type="module" src="js/home-navigation.js"></script>
 </body>
 </html>

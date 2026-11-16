@@ -1,78 +1,45 @@
-// Contact form + social links (port of components/sections/contact-section.tsx)
-import { showToast } from "./main.js";
-
-import { siteContent, whenReady, escapeHtml } from "./site-content.js";
-const socials = siteContent.profile.socials;
-
-function renderSocials() {
-  const wrap = document.getElementById("social-links");
-  if (!wrap) return;
-  socials.forEach((s) => {
-    const a = document.createElement("a");
-    a.className = "social-link";
-    a.innerHTML = `<span style="font-size:1.1rem;">${escapeHtml(s.icon)}</span><span>${escapeHtml(s.name)}</span>`;
-    if (s.url) {
-      a.href = s.url;
-      a.target = "_blank";
-      a.rel = "noopener noreferrer";
-    } else {
-      a.href = "#";
-      a.addEventListener("click", (e) => e.preventDefault());
-    }
-    wrap.appendChild(a);
-  });
-}
-
-function initMic() {
-  const micBtn = document.getElementById("mic-toggle");
-  if (!micBtn) return;
-  let recording = false;
-
-  function render() {
-    micBtn.classList.toggle("recording", recording);
-    micBtn.innerHTML = recording ? '<span data-lucide="mic"></span>' : '<span data-lucide="mic-off"></span>';
-    window.__renderIcons?.();
-  }
-  render();
-
-  micBtn.addEventListener("click", () => {
-    recording = !recording;
-    render();
-    if (recording) {
-      showToast({ title: "Voice input activated 🎤", description: "Speak your message and I'll transcribe it for you!" });
-    }
-  });
-}
-
-function initForm() {
-  const form = document.getElementById("contact-form");
-  if (!form) return;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-
-    await new Promise((resolve) => setTimeout(resolve, 1000));
-
-    showToast({ title: "Message sent! 🚀", description: "Thanks for reaching out. I'll get back to you soon!" });
-    form.reset();
-    submitBtn.disabled = false;
-  });
-}
-
-function initSuggestionBadges() {
-  document.querySelectorAll(".ai-suggestions .badge").forEach((b) => {
-    b.style.cursor = "pointer";
-    b.addEventListener("click", () => {
-      document.getElementById("cf-message").value = b.textContent;
-    });
-  });
-}
+import { styleSelects } from "./select-menu.js";
+import { siteContent, whenReady } from './site-content.js';
 
 whenReady(() => {
-  renderSocials();
-  initMic();
-  initForm();
-  initSuggestionBadges();
+    const wrap = document.getElementById('social-links');
+    for (const link of siteContent.profile.socials.filter(link => link.url)) {
+        const a = document.createElement('a');
+        a.className = 'social-link'; a.href = link.url; a.textContent = link.name;
+        wrap?.append(a);
+    }
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const extra = document.getElementById('inquiry-fields');
+    const fields = {
+        project: [['service','Service'], ['timeline','Target timeline'], ['budget','Budget range'], ['reference','Reference link']],
+        job: [['company','Company'], ['role','Role'], ['arrangement','Working arrangement'], ['reference','Job description link']],
+        other: [['company','Organization'], ['reference','Profile link']],
+    };
+    function refreshFields() {
+        extra.replaceChildren(...fields[form.elements.type.value].map(([name, title]) => {
+            const label = document.createElement('label'), input = document.createElement('input');
+            label.textContent = title;
+            input.name = name; input.maxLength = 300; input.className = 'input';
+            label.append(input);
+            return label;
+        }));
+    }
+    form.elements.type.addEventListener('change', refreshFields);
+    refreshFields();
+    styleSelects(form);
+    form.addEventListener('submit', async event => {
+        event.preventDefault();
+        const status = document.getElementById('inquiry-status'), button = form.querySelector('button[type=submit]');
+        button.disabled = true;
+        status.textContent = 'Sending…';
+        try {
+            const response = await fetch('/api/inquiry', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(Object.fromEntries(new FormData(form))) });
+            if (!response.ok) throw Error((await response.json()).error);
+            status.textContent = 'Message sent. Thank you for getting in touch.';
+            form.reset(); refreshFields();
+        } catch (e) {
+            status.textContent = (e.message || 'Could not send your message.') + ' Your message is still here. You can also email ' + siteContent.profile.email + '.';
+        } finally { button.disabled = false; }
+    });
 });

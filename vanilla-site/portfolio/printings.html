@@ -14,14 +14,13 @@
   <script type="importmap">{"imports":{"three":"../assets/vendor/three/build/three.module.js"}}</script>
   <script type="module" src="../js/particles.js"></script>
   <script type="module" src="../js/portfolio.js"></script>
+  <link rel="stylesheet" href="../css/project.css">
+  <script type="module" src="../js/site-header.js"></script>
 </head>
 <body class="portfolio-page" data-category="printings">
   <div id="hero-canvas-wrap" aria-hidden="true"></div>
   <a class="skip-link" href="#collection">Skip to projects</a>
-  <header class="masthead wrap">
-    <a class="wordmark liquid-gradient font-sora" href="../index.html">Haitham Boghdady</a>
-    <nav class="portfolio-nav" aria-label="Main navigation"><a href="../index.html#about">About</a><a href="../index.html#projects">Project Galaxy</a><a href="../index.html#contact">Contact</a></nav>
-  </header>
+  <header id="site-header" class="site-header"></header>
   <main>
     <section class="intro">
       <div class="wrap">
@@ -52,7 +51,8 @@
       </div>
     </section>
   </main>
-  <footer class="wrap footer"><span>© 2026 Haitham Boghdady · Design portfolio</span><a href="../index.html#projects">Return to Project Galaxy ↑</a></footer>
+<footer id="site-footer" class="shared-footer"></footer>
+
   <dialog id="artwork-dialog" aria-labelledby="artwork-title">
     <div class="viewer-head"><span class="eyebrow">COLLECTION PREVIEW</span><button type="button" id="close-artwork" aria-label="Close artwork">✕</button></div>
     <img id="artwork-image" alt="" />

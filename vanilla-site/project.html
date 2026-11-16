@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Project | Haitham Boghdady</title>
+  <meta name="description" content="Portfolio project — Haitham Boghdady">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/portfolio.css">
+  <link rel="stylesheet" href="./css/project.css">
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/build/three.module.js"}}</script>
+  <script type="module" src="./js/particles.js"></script>
+  <script type="module" src="./js/project.js"></script>
+  <script type="module" src="./js/site-header.js"></script>
+</head>
+<body class="portfolio-page project-page" data-portfolio-page="project">
+  <div id="hero-canvas-wrap" aria-hidden="true"></div>
+  <a class="skip-link" href="#project-main">Skip to project</a>
+  <header id="site-header" class="site-header"></header>
+  <main id="project-main" class="wrap">
+    <nav class="breadcrumb" id="project-trail" aria-label="Breadcrumb"><a href="./">Home</a><span aria-hidden="true">/</span><a href="./work.html">Work</a></nav>
+    <header class="project-hero">
+      <div class="project-introduction">
+        <p class="eyebrow" id="project-kicker">SELECTED WORK</p>
+        <h1 class="liquid-gradient font-sora" id="project-title">Portfolio project</h1>
+        <p class="project-lead" id="project-lead" hidden></p>
+        <div class="project-chips" id="project-chips" hidden></div>
+        <div class="project-actions" id="project-actions"></div>
+      </div>
+      <div id="project-showcase" hidden></div>
+    </header>
+    <nav id="project-sections" class="project-section-nav" aria-label="On this page" hidden></nav>
+    <article id="project-detail" class="project-detail" aria-labelledby="project-title"></article>
+  </main>
+<footer id="site-footer" class="shared-footer"></footer>
+
+  <dialog class="project-viewer" aria-labelledby="viewer-title" id="project-viewer">
+    <div class="project-viewer-head"><h2 id="viewer-title">Artwork preview</h2><form method="dialog"><button class="project-action">Close preview</button></form></div>
+    <img id="viewer-image" alt="">
+  </dialog>
+</body>
+</html>

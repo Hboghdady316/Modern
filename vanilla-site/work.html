@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Work | Haitham Boghdady</title>
+  <meta name="description" content="Explore selected projects by category or discover the collections in Project Galaxy.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/portfolio.css">
+  <link rel="stylesheet" href="./css/project.css">
+  <script type="importmap">{"imports":{"three":"./assets/vendor/three/build/three.module.js"}}</script>
+  <script type="module" src="./js/particles.js"></script>
+  <script type="module" src="./js/work.js"></script>
+  <script type="module" src="./js/site-content.js"></script>
+  <script type="module" src="./js/site-header.js"></script>
+<link rel="stylesheet" href="./css/select-menu.css">
+</head>
+<body class="portfolio-page galaxy-page" data-portfolio-page="work">
+<div id="hero-canvas-wrap" aria-hidden="true"></div>
+<a class="skip-link" href="#page-main">Skip to content</a>
+<header id="site-header" class="site-header"></header>
+<main id="page-main" class="wrap galaxy-main">
+  <nav class="breadcrumb" aria-label="Breadcrumb"><a href="./">Home</a><span aria-hidden="true">/</span><span aria-current="page">Work</span></nav>
+  <div class="galaxy-hero"><p class="eyebrow">PROJECT GALAXY / WORK</p><h1 class="liquid-gradient font-sora">Browse the portfolio</h1><p class="project-lead">Explore selected projects by category or discover the collections in Project Galaxy.</p></div>
+  <section class="project-panel galaxy-content" aria-labelledby="collection-heading">
+    <h2 class="font-sora" id="collection-heading">The collections</h2>
+    <div class="work-controls"><label>Category <select class="input" id="work-filter"><option value="">All categories</option></select></label><a class="project-action" id="galaxy-link" href="./index.html#projects" hidden>Explore Project Galaxy</a></div>
+    <div id="work-grid" class="work-grid"></div><p id="work-empty" role="status" hidden>No published projects in this view yet.</p>
+  </section>
+</main>
+<footer id="site-footer" class="shared-footer"></footer>
+
+</body>
+</html>

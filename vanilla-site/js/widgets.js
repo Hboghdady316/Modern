@@ -1,72 +1,19 @@
-// Live GitHub widget + Currently Learning widget
-// (port of components/widgets/live-github-widget.tsx + currently-learning-widget.tsx)
-
-import { siteContent, escapeHtml, whenReady } from "./site-content.js";
-const learningData = siteContent.learning.map(item => ({...item,name:escapeHtml(item.name),icon:escapeHtml(item.icon)}));
-
-function initGithubWidget() {
-  const commitsEl = document.getElementById("gh-commits");
-  const lastCommitEl = document.getElementById("gh-last-commit");
-  if (!commitsEl) return;
-
-  let commits = parseInt(commitsEl.textContent, 10);
-
-  setInterval(() => {
-    commits += Math.floor(Math.random() * 3);
-    commitsEl.textContent = String(commits);
-    lastCommitEl.textContent = Math.random() > 0.5 ? "Just now" : "1 hour ago";
-  }, 30000);
-}
-
-function initLearningWidget() {
-  const list = document.getElementById("learning-list");
-  if (!list) return;
-
-  learningData.forEach((item, index) => {
-    const row = document.createElement("div");
-    row.className = "learning-item";
-    row.dataset.animate = "fade-left";
-    row.dataset.delay = String(index * 100);
-    row.dataset.duration = "500";
-    row.innerHTML = `
-      <div class="learning-row">
-        <div class="learning-left"><span style="font-size:1.1rem;">${item.icon}</span>${item.name}</div>
-        <span class="learning-pct">${item.progress}%</span>
-      </div>
-      <div class="progress-track"><div class="progress-fill" data-progress="${item.progress}"></div></div>
-    `;
-    list.appendChild(row);
-  });
-
-  const nextUp = document.createElement("div");
-  nextUp.className = "learning-next hover-scale";
-  nextUp.innerHTML = `
-    <div class="learning-next-head"><span data-lucide="zap" style="color:#facc15;"></span>Next Up:</div>
-    <div class="learning-next-body">${escapeHtml(siteContent.settings.learningNext)}</div>
-  `;
-  list.appendChild(nextUp);
-
-  window.__renderIcons?.();
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const el = entry.target;
-        el.style.transitionDelay = `${el.dataset.delay || 0}ms`;
-        el.style.transitionDuration = `${el.dataset.duration || 500}ms`;
-        el.classList.add("in-view");
-        const fill = el.querySelector(".progress-fill");
-        if (fill) fill.style.width = `${fill.dataset.progress}%`;
-        io.unobserve(el);
-      });
-    },
-    { threshold: 0.2 },
-  );
-  list.querySelectorAll("[data-animate]").forEach((el) => io.observe(el));
-}
+import { siteContent, escapeHtml, whenReady } from './site-content.js';
+import { homeSectionVisible } from './home-layout.js';
 
 whenReady(() => {
-  initGithubWidget();
-  initLearningWidget();
+    const list = document.getElementById('learning-list');
+    if (!list || !homeSectionVisible(siteContent.settings, 'learning')) return;
+    const topics = (siteContent.learning || []).filter(item => item.visible !== false);
+    list.innerHTML = topics.map(item => `
+        <div class="learning-item">
+          <div class="learning-row"><div class="learning-left"><span>${escapeHtml(item.icon)}</span>${escapeHtml(item.name)}</div><span class="learning-pct">${item.progress}%</span></div>
+          <div class="progress-track"><div class="progress-fill" style="width:${item.progress}%"></div></div>
+        </div>`).join('');
+    if (siteContent.settings.learningNext?.trim()) {
+        list.insertAdjacentHTML('beforeend', `
+          <div class="learning-next"><div class="learning-next-head">Next up</div>
+          <p class="learning-next-body">${escapeHtml(siteContent.settings.learningNext)}</p></div>`);
+    }
+    document.getElementById('learning').hidden = !list.children.length;
 });

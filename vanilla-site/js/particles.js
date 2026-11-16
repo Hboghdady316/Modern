@@ -22,6 +22,7 @@ function renderFallback(container) {
 }
 
 function init() {
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
   const container = document.getElementById("hero-canvas-wrap");
   if (!container) return;
 

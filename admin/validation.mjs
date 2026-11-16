@@ -1,3 +1,4 @@
+import { homeSections } from '../vanilla-site/js/home-layout.js';
 const ids = ['social-media', 'logos-branding', 'outdoors', 'printings', 'magazines-catalogues', 'videos'];
 function fail(message) { throw new Error(message); }
 function string(value, label, max = 2000, required = false) {
@@ -46,6 +47,24 @@ export function validateContent(input) {
         string(p[key], `Profile ${key}`, key === 'bio' ? 6000 : 300, ['name', 'email'].includes(key));
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email))
         fail('Enter a valid contact email.');
+    for (const key of ['availability','aiApproach','siteTitle','siteDescription'])
+        if (p[key] !== undefined) string(p[key], key, 6000);
+    if (p.services !== undefined) {
+        list(p.services, 'Services', 30);
+        p.services.forEach((service, index) => {
+            const label = `Service ${index + 1}`;
+            if (typeof service === 'string') { string(service, label, 300); return; }
+            if (!service || typeof service !== 'object' || Array.isArray(service)) fail(`${label} is invalid.`);
+            string(service.title, `${label} title`, 150, true);
+            string(service.description, `${label} description`, 1000);
+            string(service.process, `${label} process`, 1000);
+        });
+    }
+    for (const key of ['qualifications','testimonials'])
+        if (p[key] !== undefined) strings(p[key], key);
+    for (const key of ['photoUrl','shareImage'])
+        if (p[key] !== undefined) url(p[key], key, 'image');
+    if (p.bookingUrl !== undefined) url(p.bookingUrl, 'Booking link');
     url(p.resumeUrl, 'Resume link', 'resume');
     list(p.socials, 'Social links', 12);
     p.socials.forEach(v => { string(v.name, 'Social name', 80, true); string(v.icon, 'Social icon', 20); url(v.url, 'Social link'); });
@@ -55,9 +74,18 @@ export function validateContent(input) {
     string(s.galaxyDescription, 'Galaxy introduction', 2000);
     for (const key of ['home', 'about', 'projects', 'skills', 'contact'])
         bool(s.sections[key], `Section ${key}`);
-    list(input.categories, 'Categories', 6);
-    if (input.categories.length !== 6 || new Set(input.categories.map(c => c.id)).size !== 6 || input.categories.some(c => !ids.includes(c.id)))
-        fail('Keep the six existing category IDs. Hide a category instead of deleting it.');
+    for (const id of ['experience', 'services', 'learning', 'featured'])
+        if (s.sections[id] !== undefined) bool(s.sections[id], homeSections[id]);
+    if (s.homeOrder !== undefined) {
+        list(s.homeOrder, 'Homepage order', Object.keys(homeSections).length);
+        if (new Set(s.homeOrder).size !== s.homeOrder.length || s.homeOrder.some(id => typeof id !== 'string' || !Object.hasOwn(homeSections, id)))
+            fail('Homepage order must contain unique, known sections.');
+    }
+    list(input.categories, 'Categories', 12);
+    const categories = new Set(input.categories.map(c => c.id));
+    if (!categories.size || categories.size !== input.categories.length || [...categories].some(id => typeof id !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id) || id.length > 64 || id === 'category'))
+        fail('Keep at least one category. Category IDs must be unique lowercase slugs.');
+    const projectIds = new Set();
     for (const c of input.categories) {
         string(c.name, 'Category name', 100, true);
         string(c.description, 'Category description', 6000);
@@ -65,23 +93,37 @@ export function validateContent(input) {
         bool(c.visible, 'Category visibility');
         if (!/^#[0-9a-f]{6}$/i.test(c.color))
             fail('Planet color must use a six-digit hex value.');
-        if (c.category !== c.id || c.url !== `portfolio/${c.id}.html`)
+        if (c.category !== c.id || c.url !== (ids.includes(c.id) ? `portfolio/${c.id}.html` : `portfolio/category.html?id=${c.id}`))
             fail('Category destination cannot be changed.');
         if (!Array.isArray(c.position) || c.position.length !== 3 || c.position.some(n => typeof n !== 'number' || !Number.isFinite(n) || Math.abs(n) > 5))
             fail('Invalid planet position.');
         url(c.image, 'Category cover', 'image');
         strings(c.formats, 'Category formats');
         list(c.projects, 'Projects per category', 200);
-        const projectIds = new Set();
         for (const project of c.projects) {
             string(project.id, 'Project ID', 100, true);
+            if (!/^[a-z0-9_-]+$/i.test(project.id)) fail('Invalid project ID.');
             if (projectIds.has(project.id))
-                fail('Project IDs must be unique within a category.');
+                fail('Project IDs must be unique across the portfolio.');
             projectIds.add(project.id);
             for (const key of ['title', 'platform', 'format', 'description'])
                 string(project[key], `Project ${key}`, key === 'description' ? 6000 : 300, key === 'title');
+            for (const key of ['client','year','industry','context','objective','audience','role','approach','outcomes','deliverables','credits','alt','caption','aiProcess'])
+                if (project[key] !== undefined) string(project[key], key, 6000);
+            if (project.archived !== undefined) bool(project.archived, 'Archived');
+            if (project.featuredOrder !== undefined && (!Number.isInteger(project.featuredOrder) || project.featuredOrder < 0 || project.featuredOrder > 10000)) fail('Invalid featured position.');
+            if (project.extraCategories !== undefined) {
+                list(project.extraCategories, 'Additional categories', 6);
+                if (project.extraCategories.some(id => !categories.has(id))) fail('Additional category IDs: ' + [...categories].join(', '));
+            }
             bool(project.placeholder, 'Placeholder status');
             bool(project.visible, 'Project visibility');
+            for (const key of ['galleryImages','processImages']) {
+                if (project[key] === undefined) continue;
+                list(project[key], key, 30);
+                project[key].forEach(value => url(value, key, 'image'));
+            }
+            if (project.captions !== undefined) url(project.captions, 'Video captions', 'image');
             url(project.image, 'Project image', 'image');
             url(project.videoUrl, 'Video URL', 'image');
         }
@@ -97,11 +139,9 @@ export function validateContent(input) {
     }
     input.skills ??= [];
     input.learning ??= [];
-    s.showActivityWidget ??= true;
     s.showLearningWidget ??= true;
     s.learningNext ??= '';
-    for (const key of ['showActivityWidget', 'showLearningWidget'])
-        bool(s[key], key);
+    bool(s.showLearningWidget, 'showLearningWidget');
     string(s.learningNext, 'Next learning topic', 2000);
     list(input.skills, 'Skills', 30);
     for (const skill of input.skills) {
@@ -115,6 +155,7 @@ export function validateContent(input) {
     list(input.learning, 'Learning items', 30);
     for (const item of input.learning) {
         string(item.name, 'Learning topic', 200, true);
+        if (item.visible !== undefined) bool(item.visible, 'Learning topic visibility');
         string(item.icon, 'Learning icon', 20);
         if (!Number.isFinite(item.progress) || item.progress < 0 || item.progress > 100)
             fail('Learning progress must be between 0 and 100.');
